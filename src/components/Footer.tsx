@@ -30,7 +30,7 @@ const quickLinks = [
 const supportLinks = [
   { label: "Contact", to: "/contact" },
   { label: "Instagram", href: "https://instagram.com/_style_daddy_" },
-  { label: "WhatsApp", href: "https://wa.me/919640639926" },
+  { label: "WhatsApp", href: "https://wa.me/91 6309502357" },
   { label: "Store Location", to: "/contact" },
 ];
 
@@ -149,7 +149,7 @@ export function Footer() {
               </a>
 
               <a
-                href="https://wa.me/919640639926"
+                href="https://wa.me/91 6309502357"
                 target="_blank"
                 rel="noreferrer"
                 className="flex h-12 w-12 items-center justify-center border border-border bg-card transition hover:border-green-500 hover:text-green-500"
@@ -214,7 +214,7 @@ export function Footer() {
 
               <p className="flex gap-3">
                 <Phone className="h-5 w-5 shrink-0 text-primary" />
-                <span>+91 96406 39926</span>
+                <span>+91 6309502357</span>
               </p>
 
               <p className="flex gap-3">
@@ -224,7 +224,7 @@ export function Footer() {
             </div>
 
             <a
-              href="https://wa.me/919640639926"
+              href="https://wa.me/91 6309502357"
               target="_blank"
               rel="noreferrer"
               className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-green-500 px-5 py-4 text-sm font-black uppercase tracking-[0.18em] text-black transition hover:-translate-y-1"
