@@ -125,7 +125,7 @@ function About() {
             <img
               src={logo}
               alt="Style Daddy"
-              className="absolute left-1/2 top-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full ring-4 ring-primary glow-fire animate-float md:h-64 md:w-64"
+              className="absolute left-1/2 top-1/2 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-full ring-4 ring-primary glow-fire animate-float md:h-72 md:w-72"
             />
 
             <div className="absolute left-4 top-16 rounded-2xl border border-border bg-background/80 p-4 backdrop-blur">

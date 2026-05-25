@@ -63,7 +63,7 @@ export function Header() {
                 <img
                   src={logo}
                   alt="Style Daddy"
-                  className="relative h-14 w-14 rounded-full border-2 border-primary object-cover glow-fire"
+                  className="relative h-16 w-16 rounded-full border-2 border-primary object-cover glow-fire"
                 />
               </div>
 
@@ -112,7 +112,7 @@ export function Header() {
               </a>
 
               <a
-                href="https://wa.me/919640639926"
+                href="https://wa.me/91 6309502357"
                 target="_blank"
                 rel="noreferrer"
                 className="hidden h-12 w-12 items-center justify-center rounded-full border border-green-500/40 bg-green-500/10 transition hover:bg-green-500 hover:text-black md:flex"
@@ -182,7 +182,7 @@ export function Header() {
 
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               <a
-                href="https://wa.me/919640639926"
+                href="https://wa.me/91 6309502357"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-center gap-3 rounded-lg bg-green-500 px-6 py-4 font-black uppercase tracking-[0.18em] text-black"

@@ -121,7 +121,7 @@ export function Footer() {
               <img
                 src={logo}
                 alt="Style Daddy"
-                className="h-16 w-16 rounded-full border-2 border-primary glow-fire"
+                className="h-20 w-20 rounded-full border-2 border-primary glow-fire"
               />
 
               <div>

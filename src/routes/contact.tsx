@@ -126,7 +126,7 @@ function ContactPage() {
               <img
                 src={logo}
                 alt="Style Daddy"
-                className="mx-auto h-36 w-36 rounded-full ring-4 ring-primary glow-fire animate-float"
+                className="mx-auto h-40 w-40 rounded-full ring-4 ring-primary glow-fire animate-float"
               />
 
               <div className="mt-8 flex items-center justify-center gap-2 text-primary">
