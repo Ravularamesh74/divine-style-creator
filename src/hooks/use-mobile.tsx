@@ -1,19 +1,66 @@
 import * as React from "react";
 
-const MOBILE_BREAKPOINT = 768;
+const BREAKPOINTS = {
+  mobile: 768,
+  tablet: 1024,
+  desktop: 1280,
+} as const;
 
-export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined);
+export function useMediaQuery(query: string) {
+  const getMatches = React.useCallback(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    return window.matchMedia(query).matches;
+  }, [query]);
+
+  const [matches, setMatches] = React.useState(getMatches);
 
   React.useEffect(() => {
-    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
-    const onChange = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    };
-    mql.addEventListener("change", onChange);
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-    return () => mql.removeEventListener("change", onChange);
-  }, []);
+    const mediaQuery = window.matchMedia(query);
 
-  return !!isMobile;
+    const handleChange = (
+      event: MediaQueryListEvent
+    ) => {
+      setMatches(event.matches);
+    };
+
+    setMatches(mediaQuery.matches);
+
+    mediaQuery.addEventListener(
+      "change",
+      handleChange
+    );
+
+    return () =>
+      mediaQuery.removeEventListener(
+        "change",
+        handleChange
+      );
+  }, [query]);
+
+  return matches;
+}
+
+export function useBreakpoint() {
+  const isMobile = useMediaQuery(
+    `(max-width:${BREAKPOINTS.mobile - 1}px)`
+  );
+
+  const isTablet = useMediaQuery(
+    `(min-width:${BREAKPOINTS.mobile}px) and (max-width:${
+      BREAKPOINTS.tablet - 1
+    }px)`
+  );
+
+  const isDesktop = useMediaQuery(
+    `(min-width:${BREAKPOINTS.tablet}px)`
+  );
+
+  return {
+    isMobile,
+    isTablet,
+    isDesktop,
+  };
 }

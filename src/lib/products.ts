@@ -1,28 +1,146 @@
-import p1 from "@/assets/product-1.jpg";
-import p2 from "@/assets/product-2.jpg";
-import p3 from "@/assets/product-3.jpg";
-import p4 from "@/assets/product-4.jpg";
-import p5 from "@/assets/product-5.jpg";
-import p6 from "@/assets/product-6.jpg";
+import BLACK_OS_TS from "@/assets/BLACK-OS-TS.jpeg";
+import BLACK_TS_BP from "@/assets/BLACK-TS-BP.jpeg";
+import BLUE_OVERSIZE_TS from "@/assets/BLUE-OVERSIZE-T-SHIRT.jpeg";
+import MAROON_OS_TS from "@/assets/MAROON-OS-TS.jpeg";
+import TIMELESS_EDGE from "@/assets/OS-FIT-TIMELESS-EDGE.jpeg";
+import WIDE_LEG_BP from "@/assets/PT-WIDE-LEG-BP.jpeg";
+import TRI_TS_BP from "@/assets/TRI-TS-BP.jpeg";
+import TRI_TS_BP2 from "@/assets/TRI-TS-BP2.jpeg";
+import WHITE_OS_TS_BP from "@/assets/WHITE-OS-TS-BP.jpeg";
+import WHITE_OS_TS_BP2 from "@/assets/WHITE-OS-TS-BP2.jpeg";
 
 export type Product = {
   id: string;
   name: string;
   price: number;
   oldPrice: number;
-  category: "T-Shirts" | "Pants" | "Hoodies" | "Shirts" | "Jackets" | "Combos";
+  category:
+    | "T-Shirts"
+    | "Pants"
+    | "Hoodies"
+    | "Shirts"
+    | "Jackets"
+    | "Combos";
   badge?: string;
   image: string;
   description: string;
 };
 
 export const products: Product[] = [
-  { id: "1", name: "Street Art Combo", price: 1499, oldPrice: 2499, category: "Combos", badge: "COMBO", image: p1, description: "Oversized graphic tee paired with statement cargo joggers. A two-piece fit that owns the street." },
-  { id: "2", name: "Graphic Oversized Tee", price: 799, oldPrice: 1299, category: "T-Shirts", badge: "HOT 🔥", image: p2, description: "Premium 240 GSM heavy cotton. Loud graphic. Loose silhouette built for movement." },
-  { id: "3", name: "Cargo Joggers", price: 999, oldPrice: 1599, category: "Pants", image: p3, description: "Multi-pocket utility joggers with tapered ankle cuffs. Function meets fit." },
-  { id: "4", name: "Minimal Logo Hoodie", price: 1299, oldPrice: 1999, category: "Hoodies", badge: "NEW", image: p4, description: "Heavyweight fleece with embroidered Daddy crown. Effortless cold-weather flex." },
-  { id: "5", name: "Tropical Print Shirt", price: 899, oldPrice: 1499, category: "Shirts", image: p5, description: "Resort-ready button-down. Bold print, breezy rayon, vacation energy." },
-  { id: "6", name: "Distressed Denim Jacket", price: 1899, oldPrice: 2999, category: "Jackets", badge: "TRENDING", image: p6, description: "Vintage-washed denim with hand-distressed details. Layer over everything." },
+  {
+    id: "1",
+    name: "Black Oversized Tee",
+    price: 799,
+    oldPrice: 1199,
+    category: "T-Shirts",
+    badge: "BESTSELLER",
+    image: BLACK_OS_TS,
+    description:
+      "Premium oversized fit crafted from heavyweight cotton for everyday comfort and streetwear style.",
+  },
+  {
+    id: "2",
+    name: "Black Tee + Baggy Pants",
+    price: 1499,
+    oldPrice: 2299,
+    category: "Combos",
+    badge: "HOT 🔥",
+    image: BLACK_TS_BP,
+    description:
+      "Complete streetwear combo featuring a relaxed-fit black tee paired with baggy pants.",
+  },
+  {
+    id: "3",
+    name: "Blue Oversized T-Shirt",
+    price: 799,
+    oldPrice: 1199,
+    category: "T-Shirts",
+    badge: "NEW",
+    image: BLUE_OVERSIZE_TS,
+    description:
+      "Clean oversized silhouette with a vibrant blue tone. Built for comfort and effortless styling.",
+  },
+  {
+    id: "4",
+    name: "Maroon Oversized Tee",
+    price: 799,
+    oldPrice: 1199,
+    category: "T-Shirts",
+    image: MAROON_OS_TS,
+    description:
+      "Rich maroon colorway with premium fabric and relaxed fit for a modern streetwear look.",
+  },
+  {
+    id: "5",
+    name: "Timeless Edge Oversized Tee",
+    price: 899,
+    oldPrice: 1399,
+    category: "T-Shirts",
+    badge: "TRENDING",
+    image: TIMELESS_EDGE,
+    description:
+      "Signature Timeless Edge graphic oversized tee made for standout casual styling.",
+  },
+  {
+    id: "6",
+    name: "Wide Leg Baggy Pants",
+    price: 1099,
+    oldPrice: 1699,
+    category: "Pants",
+    image: WIDE_LEG_BP,
+    description:
+      "Relaxed wide-leg silhouette with premium construction for maximum comfort and versatility.",
+  },
+  {
+    id: "7",
+    name: "Tri Graphic Combo",
+    price: 1599,
+    oldPrice: 2499,
+    category: "Combos",
+    badge: "LIMITED",
+    image: TRI_TS_BP,
+    description:
+      "Graphic oversized tee paired with matching bottoms for a complete street-ready fit.",
+  },
+  {
+    id: "8",
+    name: "Tri Streetwear Set",
+    price: 1599,
+    oldPrice: 2499,
+    category: "Combos",
+    image: TRI_TS_BP2,
+    description:
+      "Bold streetwear aesthetic with premium oversized proportions and coordinated styling.",
+  },
+  {
+    id: "9",
+    name: "White Oversized Tee Combo",
+    price: 1499,
+    oldPrice: 2299,
+    category: "Combos",
+    badge: "POPULAR",
+    image: WHITE_OS_TS_BP,
+    description:
+      "Classic white oversized tee matched with baggy bottoms for a timeless streetwear look.",
+  },
+  {
+    id: "10",
+    name: "White Street Essential Set",
+    price: 1499,
+    oldPrice: 2299,
+    category: "Combos",
+    image: WHITE_OS_TS_BP2,
+    description:
+      "Minimalist oversized fit with versatile styling that works for every occasion.",
+  },
 ];
 
-export const categories = ["ALL", "T-Shirts", "Pants", "Hoodies", "Shirts", "Jackets", "Combos"] as const;
+export const categories = [
+  "ALL",
+  "T-Shirts",
+  "Pants",
+  "Hoodies",
+  "Shirts",
+  "Jackets",
+  "Combos",
+] as const;
