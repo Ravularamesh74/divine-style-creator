@@ -4,23 +4,21 @@ import {
   Eye,
   Flame,
   Heart,
-  Instagram,
   ShoppingBag,
   Star,
 } from "lucide-react";
 import { useState } from "react";
 
+import { useCart } from "@/hooks/use-cart";
 import type { Product } from "@/lib/products";
 
 export function ProductCard({ product }: { product: Product }) {
+  const { addToCart } = useCart();
   const [liked, setLiked] = useState(false);
+  const [added, setAdded] = useState(false);
 
   const discount = Math.round(
     ((product.oldPrice - product.price) / product.oldPrice) * 100,
-  );
-
-  const orderText = encodeURIComponent(
-    `Hi Style Daddy, I want to order: ${product.name}`,
   );
 
   return (
@@ -113,15 +111,18 @@ export function ProductCard({ product }: { product: Product }) {
           Details
         </Link>
 
-        <a
-          href={`https://wa.me/919640639926?text=${orderText}`}
-          target="_blank"
-          rel="noreferrer"
+        <button
+          type="button"
+          onClick={() => {
+            addToCart({ productId: product.id, size: "M", quantity: 1 });
+            setAdded(true);
+            setTimeout(() => setAdded(false), 1500);
+          }}
           className="inline-flex items-center justify-center gap-2 border-l border-border bg-green-500 px-4 py-4 text-xs font-black uppercase tracking-[0.18em] text-black transition hover:brightness-110"
         >
-          <Instagram className="h-4 w-4" />
-          Order
-        </a>
+          <ShoppingBag className="h-4 w-4" />
+          {added ? "Added" : "Add"}
+        </button>
       </div>
     </article>
   );

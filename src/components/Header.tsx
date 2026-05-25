@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 
 import logo from "@/assets/logo.png";
+import { useCart } from "@/hooks/use-cart";
 
 const nav = [
   { to: "/", label: "HOME" },
@@ -22,6 +23,7 @@ const nav = [
 ] as const;
 
 export function Header() {
+  const { count: cartCount } = useCart();
   const [open, setOpen] = useState(false);
   const [scroll, setScroll] = useState(0);
 
@@ -112,7 +114,7 @@ export function Header() {
               </a>
 
               <a
-                href="https://wa.me/91 6309502357"
+                href="https://wa.me/916309502357"
                 target="_blank"
                 rel="noreferrer"
                 className="hidden h-12 w-12 items-center justify-center rounded-full border border-green-500/40 bg-green-500/10 transition hover:bg-green-500 hover:text-black md:flex"
@@ -120,6 +122,22 @@ export function Header() {
               >
                 <MessageCircle className="h-5 w-5" />
               </a>
+
+              <Link
+                to="/cart"
+                className="relative inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-primary hover:text-primary"
+                aria-label={`Cart${cartCount > 0 ? `, ${cartCount} items` : ""}`}
+              >
+                <ShoppingBag className="h-5 w-5" />
+                {cartCount > 0 ? (
+                  <span
+                    suppressHydrationWarning
+                    className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-fire px-1 text-[10px] font-black text-primary-foreground"
+                  >
+                    {cartCount > 9 ? "9+" : cartCount}
+                  </span>
+                ) : null}
+              </Link>
 
               <Link
                 to="/shop"
@@ -180,9 +198,9 @@ export function Header() {
               })}
             </nav>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
               <a
-                href="https://wa.me/91 6309502357"
+                href="https://wa.me/916309502357"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-center gap-3 rounded-lg bg-green-500 px-6 py-4 font-black uppercase tracking-[0.18em] text-black"
@@ -190,6 +208,19 @@ export function Header() {
                 <MessageCircle className="h-5 w-5" />
                 WhatsApp Us
               </a>
+
+              <Link
+                to="/cart"
+                className="relative flex items-center justify-center gap-3 rounded-lg border border-border bg-card px-6 py-4 font-black uppercase tracking-[0.18em] transition hover:border-primary hover:text-primary"
+              >
+                <ShoppingBag className="h-5 w-5" />
+                Cart
+                {cartCount > 0 && (
+                  <span className="rounded-full bg-fire px-2 py-0.5 text-[10px] text-primary-foreground">
+                    {cartCount}
+                  </span>
+                )}
+              </Link>
 
               <Link
                 to="/shop"

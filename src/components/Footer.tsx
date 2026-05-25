@@ -1,19 +1,19 @@
 import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
-  BadgePercent,
   Crown,
   Flame,
-  Heart,
   Instagram,
   Mail,
   MapPin,
   MessageCircle,
+  Moon,
   Phone,
+  Percent,
   ShieldCheck,
   Sparkles,
-  Star,
   Store,
+  Youtube,
   Zap,
 } from "lucide-react";
 import { useState } from "react";
@@ -27,16 +27,36 @@ const quickLinks = [
   { label: "About", to: "/about" },
 ];
 
-const supportLinks = [
-  { label: "Contact", to: "/contact" },
-  { label: "Instagram", href: "https://instagram.com/_style_daddy_" },
-  { label: "WhatsApp", href: "https://wa.me/91 6309502357" },
-  { label: "Store Location", to: "/contact" },
+const aboutLinks = [
+  { label: "Our Story", to: "/about" },
+  { label: "Our Store", to: "/contact" },
+  { label: "Men's Wear", to: "/shop" },
+  { label: "New Drops", to: "/shop" },
+  { label: "We Care", to: "/contact" },
+  { label: "Style Guide", to: "/about" },
+];
+
+const policyLinks = [
+  { label: "Privacy Policy", to: "/privacy-policy" },
+  { label: "Terms & Conditions", to: "/terms-and-conditions" },
+  { label: "Return Policy", to: "/return-policy" },
+  { label: "Refund Policy", to: "/refund-policy" },
+  { label: "Cancellation Policy", to: "/cancellation-policy" },
+  { label: "Shipping & Delivery", to: "/shipping-delivery" },
+];
+
+const customerServiceLinks = [
+  { label: "Payment Policy", to: "/payment-policy" },
+  { label: "FAQs", to: "/faqs" },
+  { label: "Size Guide", to: "/size-guide" },
+  { label: "Bulk Order", to: "/contact" },
+  { label: "Track Order", to: "/contact" },
+  { label: "Contact Us", to: "/contact" },
 ];
 
 const highlights = [
   { icon: Flame, text: "Bold drops" },
-  { icon: BadgePercent, text: "Brutal prices" },
+  { icon: Percent, text: "Brutal prices" },
   { icon: ShieldCheck, text: "Local trust" },
 ];
 
@@ -115,7 +135,7 @@ export function Footer() {
           </div>
         </section>
 
-        <section className="grid gap-10 border-y border-border py-14 lg:grid-cols-[1.4fr_0.7fr_0.7fr_1fr]">
+        <section className="grid gap-10 border-y border-border py-14 lg:grid-cols-[1.25fr_0.8fr_0.9fr_0.9fr_1.15fr]">
           <div>
             <Link to="/" className="inline-flex items-center gap-4">
               <img
@@ -149,7 +169,7 @@ export function Footer() {
               </a>
 
               <a
-                href="https://wa.me/91 6309502357"
+                href="https://wa.me/916309502357"
                 target="_blank"
                 rel="noreferrer"
                 className="flex h-12 w-12 items-center justify-center border border-border bg-card transition hover:border-green-500 hover:text-green-500"
@@ -157,13 +177,27 @@ export function Footer() {
               >
                 <MessageCircle className="h-5 w-5" />
               </a>
+
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noreferrer"
+                className="flex h-12 w-12 items-center justify-center border border-border bg-card transition hover:border-red-500 hover:text-red-500"
+                aria-label="YouTube"
+              >
+                <Youtube className="h-5 w-5" />
+              </a>
             </div>
           </div>
 
+          <FooterLinkGroup title="SHOP" links={quickLinks} />
+          <FooterLinkGroup title="ABOUT US" links={aboutLinks} />
+          <FooterLinkGroup title="POLICIES" links={policyLinks} />
+
           <div>
-            <h4 className="font-display text-2xl">SHOP</h4>
+            <h4 className="font-display text-2xl">CUSTOMER SERVICE</h4>
             <ul className="mt-5 grid gap-3 text-sm text-muted-foreground">
-              {quickLinks.map((link) => (
+              {customerServiceLinks.map((link) => (
                 <li key={link.label}>
                   <Link to={link.to} className="transition hover:text-primary">
                     {link.label}
@@ -171,67 +205,6 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
-
-          <div>
-            <h4 className="font-display text-2xl">CONNECT</h4>
-            <ul className="mt-5 grid gap-3 text-sm text-muted-foreground">
-              {supportLinks.map((link) => (
-                <li key={link.label}>
-                  {"to" in link ? (
-                    <Link to={link.to} className="transition hover:text-primary">
-                      {link.label}
-                    </Link>
-                  ) : (
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="transition hover:text-primary"
-                    >
-                      {link.label}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="border border-border bg-card p-6">
-            <div className="flex items-center gap-3">
-              <Store className="h-6 w-6 text-primary" />
-              <h4 className="font-display text-2xl">VISIT STORE</h4>
-            </div>
-
-            <div className="mt-5 grid gap-4 text-sm text-muted-foreground">
-              <p className="flex gap-3">
-                <MapPin className="h-5 w-5 shrink-0 text-primary" />
-                <span>
-                  7-26/3, Opp CS Brother, New Raghavendra Nagar, Nacharam,
-                  Hyderabad - 500076
-                </span>
-              </p>
-
-              <p className="flex gap-3">
-                <Phone className="h-5 w-5 shrink-0 text-primary" />
-                <span>+91 6309502357</span>
-              </p>
-
-              <p className="flex gap-3">
-                <Mail className="h-5 w-5 shrink-0 text-primary" />
-                <span>styledaddy@gmail.com</span>
-              </p>
-            </div>
-
-            <a
-              href="https://wa.me/91 6309502357"
-              target="_blank"
-              rel="noreferrer"
-              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-green-500 px-5 py-4 text-sm font-black uppercase tracking-[0.18em] text-black transition hover:-translate-y-1"
-            >
-              <MessageCircle className="h-5 w-5" />
-              Order On WhatsApp
-            </a>
           </div>
         </section>
 
@@ -250,12 +223,60 @@ export function Footer() {
 
             <p className="flex items-center gap-2">
               Built with
-              <Heart className="h-4 w-4 fill-current text-red-500" />
-              in Hyderabad
+              <Moon className="h-4 w-4 fill-current text-red-500" />
+              by{" "}
+              <a
+                href="https://www.instagram.com/_style_daddy_/"
+                target="_blank"
+                rel="noreferrer"
+                className="transition hover:text-primary"
+              >
+                Style Daddy
+              </a>
             </p>
           </div>
         </div>
       </div>
     </footer>
+  );
+}
+
+type FooterLink = {
+  label: string;
+  to?: string;
+  href?: string;
+};
+
+function FooterLinkGroup({
+  title,
+  links,
+}: {
+  title: string;
+  links: FooterLink[];
+}) {
+  return (
+    <div>
+      <h4 className="font-display text-2xl">{title}</h4>
+      <ul className="mt-5 grid gap-3 text-sm text-muted-foreground">
+        {links.map((link) => (
+          <li key={link.label}>
+            {link.to ? (
+              <Link to={link.to} className="transition hover:text-primary">
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className="transition hover:text-primary"
+              >
+                {link.label}
+              </a>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

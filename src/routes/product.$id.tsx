@@ -1,4 +1,9 @@
-import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  Link,
+  useNavigate,
+  useRouter,
+} from "@tanstack/react-router";
 import {
   ArrowLeft,
   ArrowRight,
@@ -9,14 +14,16 @@ import {
   PackageCheck,
   RotateCcw,
   ShieldCheck,
+  ShoppingBag,
   Sparkles,
   Star,
   Truck,
   Zap,
 } from "lucide-react";
 import { useState } from "react";
-import { products } from "@/lib/products";
 import { ProductCard } from "@/components/ProductCard";
+import { useCart } from "@/hooks/use-cart";
+import { products } from "@/lib/products";
 
 function NotFound() {
   return (
@@ -98,7 +105,10 @@ const promises = [
 
 function ProductPage() {
   const { id } = Route.useParams();
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
   const [selectedSize, setSelectedSize] = useState("M");
+  const [added, setAdded] = useState(false);
 
   const product = products.find((p) => p.id === id);
   if (!product) return <NotFound />;
@@ -213,14 +223,42 @@ function ProductPage() {
               </div>
             </div>
 
+            <div className="mt-8 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  addToCart({
+                    productId: product.id,
+                    size: selectedSize,
+                    quantity: 1,
+                  });
+                  setAdded(true);
+                  setTimeout(() => setAdded(false), 2000);
+                }}
+                className="inline-flex flex-1 items-center justify-center gap-3 rounded-lg bg-fire px-8 py-4 text-sm font-black uppercase tracking-[0.24em] text-primary-foreground shadow-xl shadow-primary/25 transition hover:-translate-y-1"
+              >
+                <ShoppingBag className="h-5 w-5" />
+                {added ? "Added To Cart" : `Add Size ${selectedSize} To Cart`}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => navigate({ to: "/cart" })}
+                className="inline-flex items-center justify-center gap-3 rounded-lg border border-border bg-background px-6 py-4 text-sm font-black uppercase tracking-[0.24em] transition hover:border-primary hover:text-primary"
+              >
+                View Cart
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
+
             <a
               href={`https://instagram.com/_style_daddy_`}
               target="_blank"
               rel="noreferrer"
-              className="mt-8 inline-flex items-center justify-center gap-3 rounded-lg bg-fire px-8 py-4 text-sm font-black uppercase tracking-[0.24em] text-primary-foreground shadow-xl shadow-primary/25 transition hover:-translate-y-1"
+              className="mt-4 inline-flex items-center justify-center gap-3 text-sm font-black uppercase tracking-[0.2em] text-muted-foreground transition hover:text-primary"
             >
               <Instagram className="h-5 w-5" />
-              DM To Order Size {selectedSize}
+              Or DM on Instagram
             </a>
 
             <ul className="mt-8 grid gap-3 text-sm text-muted-foreground">
