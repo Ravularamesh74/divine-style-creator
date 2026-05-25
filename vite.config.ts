@@ -9,8 +9,20 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
 // @cloudflare/vite-plugin builds from this — wrangler.jsonc main alone is insufficient.
 export default defineConfig({
+  // Netlify serves static prerendered HTML; Cloudflare worker output breaks prerender.
+  cloudflare: false,
   tanstackStart: {
     server: { entry: "server" },
+    prerender: {
+      enabled: true,
+      crawlLinks: true,
+      autoStaticPathsDiscovery: true,
+      failOnError: true,
+    },
+    pages: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"].map((id) => ({
+      path: `/product/${id}`,
+      prerender: { enabled: true },
+    })),
   },
 });
 
