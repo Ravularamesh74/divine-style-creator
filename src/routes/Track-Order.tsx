@@ -15,7 +15,7 @@ import {
   Truck,
 } from "lucide-react";
 
-export const Route = createFileRoute("/Track-Order")({
+export const Route = createFileRoute("/track-order")({
   head: () => ({
     meta: [
       { title: "Track Order - Style Daddy" },

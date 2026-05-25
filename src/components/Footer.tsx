@@ -49,8 +49,8 @@ const customerServiceLinks = [
   { label: "Payment Policy", to: "/payment-policy" },
   { label: "FAQs", to: "/faqs" },
   { label: "Size Guide", to: "/size-guide" },
-  { label: "Bulk Order", to: "/contact" },
-  { label: "Track Order", to: "/contact" },
+  { label: "Bulk Order", to: "/bulk-order" },
+  { label: "Track Order", to: "/track-order" },
   { label: "Contact Us", to: "/contact" },
 ];
 

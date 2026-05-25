@@ -14,7 +14,7 @@ import {
   XCircle,
 } from "lucide-react";
 
-export const Route = createFileRoute("/Cancellation-Policy")({
+export const Route = createFileRoute("/cancellation-policy")({
   head: () => ({
     meta: [
       { title: "Cancellation Policy - Style Daddy" },

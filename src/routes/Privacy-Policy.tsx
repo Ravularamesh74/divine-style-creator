@@ -14,7 +14,7 @@ import {
   UserRound,
 } from "lucide-react";
 
-export const Route = createFileRoute("/Privacy-Policy")({
+export const Route = createFileRoute("/privacy-policy")({
   head: () => ({
     meta: [
       { title: "Privacy Policy - Style Daddy" },

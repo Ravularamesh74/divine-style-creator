@@ -18,7 +18,7 @@ import {
   Wallet,
 } from "lucide-react";
 
-export const Route = createFileRoute("/Payment-Policy")({
+export const Route = createFileRoute("/payment-policy")({
   head: () => ({
     meta: [
       { title: "Payment Policy - Style Daddy" },

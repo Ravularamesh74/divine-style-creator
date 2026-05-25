@@ -16,7 +16,7 @@ import {
   UserCheck,
 } from "lucide-react";
 
-export const Route = createFileRoute("/Terms&Conditions")({
+export const Route = createFileRoute("/terms-and-conditions")({
   head: () => ({
     meta: [
       { title: "Terms & Conditions - Style Daddy" },

@@ -18,7 +18,7 @@ import {
   Users,
 } from "lucide-react";
 
-export const Route = createFileRoute("/Bulk-Order")({
+export const Route = createFileRoute("/bulk-order")({
   head: () => ({
     meta: [
       { title: "Bulk Order - Style Daddy" },

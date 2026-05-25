@@ -14,7 +14,7 @@ import {
   UserRound,
 } from "lucide-react";
 
-export const Route = createFileRoute("/Size-Guide")({
+export const Route = createFileRoute("/size-guide")({
   head: () => ({
     meta: [
       { title: "Size Guide - Style Daddy" },
