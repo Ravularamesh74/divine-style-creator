@@ -1,7 +1,3 @@
-// Provide a minimal ambient module declaration to avoid TS errors when
-// the '@tanstack/react-router' package types are not installed.
-declare module '@tanstack/react-router';
-
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,

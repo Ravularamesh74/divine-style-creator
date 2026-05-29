@@ -23,7 +23,7 @@ import {
 import { useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import { useCart } from "@/hooks/use-cart";
-import { products } from "@/lib/products";
+import { getProductImages, products } from "@/lib/products";
 
 function NotFound() {
   return (
@@ -95,7 +95,7 @@ export const Route = createFileRoute("/product/$id")({
   component: ProductPage,
 });
 
-const sizes = ["S", "M", "L", "XL", "XXL"];
+const defaultSizes = ["S", "M", "L", "XL", "XXL"];
 
 const promises = [
   { icon: ShieldCheck, text: "Quality checked fit" },
@@ -108,10 +108,17 @@ function ProductPage() {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const [selectedSize, setSelectedSize] = useState("M");
+  const [activeImage, setActiveImage] = useState(0);
   const [added, setAdded] = useState(false);
 
   const product = products.find((p) => p.id === id);
   if (!product) return <NotFound />;
+
+  const sizes = product.sizes ?? defaultSizes;
+  const galleryImages = getProductImages(product);
+  const effectiveSize = sizes.includes(selectedSize)
+    ? selectedSize
+    : sizes[0] ?? "M";
 
   const off = Math.round(
     ((product.oldPrice - product.price) / product.oldPrice) * 100,
@@ -146,11 +153,36 @@ function ProductPage() {
               )}
 
               <img
-                src={product.image}
-                alt={product.name}
+                src={galleryImages[activeImage]}
+                alt={`${product.name} — view ${activeImage + 1}`}
                 className="aspect-square w-full object-cover transition duration-700 hover:scale-105"
               />
             </div>
+
+            {galleryImages.length > 1 && (
+              <div className="mt-4 grid grid-cols-4 gap-3 sm:grid-cols-5 md:grid-cols-6">
+                {galleryImages.map((src, index) => (
+                  <button
+                    key={`${product.id}-img-${index}`}
+                    type="button"
+                    onClick={() => setActiveImage(index)}
+                    className={`overflow-hidden border-2 transition ${
+                      activeImage === index
+                        ? "border-primary ring-2 ring-primary/30"
+                        : "border-border hover:border-primary/50"
+                    }`}
+                    aria-label={`Show image ${index + 1}`}
+                    aria-pressed={activeImage === index}
+                  >
+                    <img
+                      src={src}
+                      alt={`${product.name} color ${index + 1}`}
+                      className="aspect-square w-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
 
             <div className="mt-4 grid grid-cols-3 gap-4">
               {promises.map((item) => (
@@ -196,9 +228,49 @@ function ProductPage() {
               </span>
             </div>
 
-            <p className="mt-6 text-lg leading-8 text-muted-foreground">
-              {product.description}
-            </p>
+            <div className="mt-6 space-y-3 text-lg leading-8 text-muted-foreground">
+              {product.description.split("\n\n").map((block) => {
+                const trimmed = block.trim();
+                if (!trimmed) return null;
+
+                const isItalic =
+                  trimmed.startsWith("_") && trimmed.endsWith("_");
+                const isBold =
+                  trimmed.startsWith("*") && trimmed.endsWith("*");
+
+                if (isItalic) {
+                  return (
+                    <p key={trimmed} className="text-xl italic text-foreground">
+                      {trimmed.slice(1, -1)}
+                    </p>
+                  );
+                }
+
+                if (isBold) {
+                  return (
+                    <p
+                      key={trimmed}
+                      className="text-base font-black uppercase tracking-[0.2em] text-primary"
+                    >
+                      {trimmed.slice(1, -1)}
+                    </p>
+                  );
+                }
+
+                if (trimmed === "CK") {
+                  return (
+                    <p
+                      key={trimmed}
+                      className="font-display text-4xl uppercase text-gradient-fire"
+                    >
+                      {trimmed}
+                    </p>
+                  );
+                }
+
+                return <p key={trimmed}>{trimmed}</p>;
+              })}
+            </div>
 
             <div className="mt-8">
               <p className="text-sm font-black uppercase tracking-[0.3em] text-muted-foreground">
@@ -212,7 +284,7 @@ function ProductPage() {
                     type="button"
                     onClick={() => setSelectedSize(size)}
                     className={`h-13 w-14 border font-black transition ${
-                      selectedSize === size
+                      effectiveSize === size
                         ? "border-primary bg-primary text-primary-foreground"
                         : "border-border bg-background hover:border-primary hover:text-primary"
                     }`}
@@ -229,7 +301,7 @@ function ProductPage() {
                 onClick={() => {
                   addToCart({
                     productId: product.id,
-                    size: selectedSize,
+                    size: effectiveSize,
                     quantity: 1,
                   });
                   setAdded(true);
@@ -238,7 +310,7 @@ function ProductPage() {
                 className="inline-flex flex-1 items-center justify-center gap-3 rounded-lg bg-fire px-8 py-4 text-sm font-black uppercase tracking-[0.24em] text-primary-foreground shadow-xl shadow-primary/25 transition hover:-translate-y-1"
               >
                 <ShoppingBag className="h-5 w-5" />
-                {added ? "Added To Cart" : `Add Size ${selectedSize} To Cart`}
+                {added ? "Added To Cart" : `Add Size ${effectiveSize} To Cart`}
               </button>
 
               <button

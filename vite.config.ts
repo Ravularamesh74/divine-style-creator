@@ -6,12 +6,54 @@
 // You can pass additional config via defineConfig({ vite: { ... } }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+const productPages = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "11",
+].map(
+  (id) => ({
+    path: `/product/${id}`,
+    prerender: { enabled: true },
+  }),
+);
+
+const staticPages = [
+  "/",
+  "/shop",
+  "/cart",
+  "/about",
+  "/contact",
+  "/privacy-policy",
+  "/terms-and-conditions",
+  "/return-policy",
+  "/refund-policy",
+  "/shipping-delivery",
+  "/cancellation-policy",
+  "/payment-policy",
+  "/faqs",
+  "/size-guide",
+  "/track-order",
+  "/bulk-order",
+].map((path) => ({
+  path,
+  prerender: { enabled: true },
+}));
+
 // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
 // @cloudflare/vite-plugin builds from this — wrangler.jsonc main alone is insufficient.
 export default defineConfig({
   // Netlify serves static prerendered HTML; Cloudflare worker output breaks prerender.
   cloudflare: false,
   tanstackStart: {
+    start: { entry: "start" },
     server: { entry: "server" },
     prerender: {
       enabled: true,
@@ -19,11 +61,6 @@ export default defineConfig({
       autoStaticPathsDiscovery: true,
       failOnError: true,
     },
-    pages: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"].map((id) => ({
-      path: `/product/${id}`,
-      prerender: { enabled: true },
-    })),
+    pages: [...staticPages, ...productPages],
   },
 });
-
-

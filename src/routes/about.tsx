@@ -299,6 +299,7 @@ function AboutPage() {
               <MapPin className="h-5 w-5 shrink-0 text-primary" />
               7-26/3, Opp CS Brother, New Raghavendra Nagar, Nacharam,
               Hyderabad - 500076
+              
             </p>
           </div>
         </div>

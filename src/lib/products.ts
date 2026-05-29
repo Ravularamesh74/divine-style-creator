@@ -1,6 +1,19 @@
 import BLACK_OS_TS from "@/assets/BLACK-OS-TS.jpeg";
 import BLACK_TS_BP from "@/assets/BLACK-TS-BP.jpeg";
 import BLUE_OVERSIZE_TS from "@/assets/BLUE-OVERSIZE-T-SHIRT.jpeg";
+import LENIN_ASH from "@/assets/LENIN-ASH.jpeg";
+import LENIN_BLACK from "@/assets/LENIN-BLACK.jpeg";
+import LENIN_BLUE from "@/assets/LENIN-BLUE.jpeg";
+import LENIN_BROWN from "@/assets/LENIN-BROWN.jpeg";
+import LENIN_GREY from "@/assets/LENIN-GREY.jpeg";
+import LENIN_LIGHT_BLUE from "@/assets/LENIN-LIGHT-BLUE.jpeg";
+import LENIN_LIGHT_GREY from "@/assets/LENIN-LIGHT-GREY.jpeg";
+import LENIN_LIGHT_PINK from "@/assets/LENIN-LIGHT-PINK.jpeg";
+import LENIN_PINK from "@/assets/LENIN-PINK.jpeg";
+import LENIN_PURE_BLACK from "@/assets/LENIN-PURE-BLACK.jpeg";
+import LENIN_ROSEY from "@/assets/LENIN-ROSEY.jpeg";
+import LENIN_WHITE from "@/assets/LENIN-WHITE.jpeg";
+import LENIN_SHIRT_PANT from "@/assets/Leninshirt-pant.jpeg";
 import MAROON_OS_TS from "@/assets/MAROON-OS-TS.jpeg";
 import TIMELESS_EDGE from "@/assets/OS-FIT-TIMELESS-EDGE.jpeg";
 import WIDE_LEG_BP from "@/assets/PT-WIDE-LEG-BP.jpeg";
@@ -23,8 +36,26 @@ export type Product = {
     | "Combos";
   badge?: string;
   image: string;
+  images?: string[];
+  sizes?: string[];
   description: string;
 };
+
+const CK_LINEN_IMAGES = [
+  LENIN_WHITE,
+  LENIN_PURE_BLACK,
+  LENIN_BLACK,
+  LENIN_BLUE,
+  LENIN_LIGHT_BLUE,
+  LENIN_GREY,
+  LENIN_LIGHT_GREY,
+  LENIN_ASH,
+  LENIN_BROWN,
+  LENIN_PINK,
+  LENIN_LIGHT_PINK,
+  LENIN_ROSEY,
+  LENIN_SHIRT_PANT,
+];
 
 export const products: Product[] = [
   {
@@ -133,6 +164,26 @@ export const products: Product[] = [
     description:
       "Minimalist oversized fit with versatile styling that works for every occasion.",
   },
+  {
+    id: "11",
+    name: "CK Elite Crinkle Linen",
+    price: 899,
+    oldPrice: 1299,
+    category: "Shirts",
+    badge: "NEW",
+    image: LENIN_WHITE,
+    images: CK_LINEN_IMAGES,
+    sizes: ["M", "L", "XL"],
+    description: `CK
+
+_Summer Wearables_
+
+Elite Quality Airflow Crinkle Linen Solids
+
+Soft and Superb Hand Feel 👌
+
+*SIZES - M L XL*`,
+  },
 ];
 
 export const categories = [
@@ -144,3 +195,7 @@ export const categories = [
   "Jackets",
   "Combos",
 ] as const;
+
+export function getProductImages(product: Product) {
+  return product.images?.length ? product.images : [product.image];
+}
