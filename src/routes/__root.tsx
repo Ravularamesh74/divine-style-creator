@@ -12,6 +12,7 @@ import { AlertTriangle, ArrowRight, Home, RotateCcw, Sparkles } from "lucide-rea
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { MarqueeBanner } from "@/components/MarqueeBanner";
+import CookieBanner from "@/components/CookieBanner";
 
 import appCss from "../styles.css?url";
 
@@ -170,6 +171,7 @@ function RootComponent() {
         </main>
 
         <Footer />
+        <CookieBanner />
       </div>
     </QueryClientProvider>
   );
