@@ -1,66 +1,139 @@
 import * as React from "react";
 
-const BREAKPOINTS = {
-  mobile: 768,
-  tablet: 1024,
-  desktop: 1280,
+export const BREAKPOINTS = {
+  xs: 480,
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1280,
+  "2xl": 1536,
 } as const;
 
-export function useMediaQuery(query: string) {
-  const getMatches = React.useCallback(() => {
-    if (typeof window === "undefined") {
-      return false;
-    }
-
-    return window.matchMedia(query).matches;
-  }, [query]);
-
-  const [matches, setMatches] = React.useState(getMatches);
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = React.useState(false);
 
   React.useEffect(() => {
-    const mediaQuery = window.matchMedia(query);
+    if (typeof window === "undefined") return;
 
-    const handleChange = (
-      event: MediaQueryListEvent
-    ) => {
-      setMatches(event.matches);
+    const media = window.matchMedia(query);
+
+    const update = () => {
+      setMatches(media.matches);
     };
 
-    setMatches(mediaQuery.matches);
+    update();
 
-    mediaQuery.addEventListener(
-      "change",
-      handleChange
-    );
+    media.addEventListener("change", update);
 
-    return () =>
-      mediaQuery.removeEventListener(
-        "change",
-        handleChange
-      );
+    return () => {
+      media.removeEventListener("change", update);
+    };
   }, [query]);
 
   return matches;
 }
 
 export function useBreakpoint() {
-  const isMobile = useMediaQuery(
-    `(max-width:${BREAKPOINTS.mobile - 1}px)`
+  const xs = useMediaQuery(
+    `(max-width:${BREAKPOINTS.xs}px)`
   );
 
-  const isTablet = useMediaQuery(
-    `(min-width:${BREAKPOINTS.mobile}px) and (max-width:${
-      BREAKPOINTS.tablet - 1
-    }px)`
+  const sm = useMediaQuery(
+    `(min-width:${BREAKPOINTS.xs + 1}px) and (max-width:${BREAKPOINTS.sm}px)`
   );
 
-  const isDesktop = useMediaQuery(
-    `(min-width:${BREAKPOINTS.tablet}px)`
+  const md = useMediaQuery(
+    `(min-width:${BREAKPOINTS.sm + 1}px) and (max-width:${BREAKPOINTS.md}px)`
   );
 
-  return {
-    isMobile,
-    isTablet,
-    isDesktop,
-  };
+  const lg = useMediaQuery(
+    `(min-width:${BREAKPOINTS.md + 1}px) and (max-width:${BREAKPOINTS.lg}px)`
+  );
+
+  const xl = useMediaQuery(
+    `(min-width:${BREAKPOINTS.lg + 1}px) and (max-width:${BREAKPOINTS.xl}px)`
+  );
+
+  const xxl = useMediaQuery(
+    `(min-width:${BREAKPOINTS.xl + 1}px)`
+  );
+
+  const portrait = useMediaQuery(
+    "(orientation: portrait)"
+  );
+
+  const landscape = useMediaQuery(
+    "(orientation: landscape)"
+  );
+
+  const darkMode = useMediaQuery(
+    "(prefers-color-scheme: dark)"
+  );
+
+  const reducedMotion = useMediaQuery(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+  const touchDevice = useMediaQuery(
+    "(pointer: coarse)"
+  );
+
+  const retina = useMediaQuery(
+    "(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)"
+  );
+
+  const width =
+    typeof window !== "undefined"
+      ? window.innerWidth
+      : 0;
+
+  const device =
+    width < BREAKPOINTS.md
+      ? "mobile"
+      : width < BREAKPOINTS.lg
+      ? "tablet"
+      : "desktop";
+
+  return React.useMemo(
+    () => ({
+      xs,
+      sm,
+      md,
+      lg,
+      xl,
+      xxl,
+
+      portrait,
+      landscape,
+
+      darkMode,
+      reducedMotion,
+
+      touchDevice,
+      retina,
+
+      width,
+      device,
+
+      isMobile: device === "mobile",
+      isTablet: device === "tablet",
+      isDesktop: device === "desktop",
+    }),
+    [
+      xs,
+      sm,
+      md,
+      lg,
+      xl,
+      xxl,
+      portrait,
+      landscape,
+      darkMode,
+      reducedMotion,
+      touchDevice,
+      retina,
+      width,
+      device,
+    ]
+  );
 }
