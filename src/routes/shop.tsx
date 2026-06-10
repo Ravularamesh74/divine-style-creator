@@ -9,11 +9,14 @@ import {
   Star,
   Zap,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ProductCard } from "@/components/ProductCard";
 import { products, categories } from "@/lib/products";
 
 export const Route = createFileRoute("/shop")({
+  validateSearch: (search: Record<string, unknown>) => ({
+    q: typeof search.q === "string" && search.q ? search.q : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Shop — Style Daddy" },
@@ -34,8 +37,13 @@ const stats = [
 ];
 
 function Shop() {
+  const { q = "" } = Route.useSearch();
   const [cat, setCat] = useState<(typeof categories)[number]>("ALL");
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(q);
+
+  useEffect(() => {
+    setQuery(q);
+  }, [q]);
 
   const filtered = useMemo(() => {
     return products.filter((product) => {

@@ -23,6 +23,10 @@ import {
 import { ProductCard } from "@/components/ProductCard";
 import { products } from "@/lib/products";
 import hero from "@/assets/hero.jpg";
+import BLUE_OVERSIZE_TS from "@/assets/BLUE-OVERSIZE-T-SHIRT.jpeg";
+import WIDE_LEG_BP from "@/assets/PT-WIDE-LEG-BP.jpeg";
+import BLACK_OS_TS from "@/assets/BLACK-OS-TS.jpeg";
+import TRI_TS_BP2 from "@/assets/TRI-TS-BP2.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -77,24 +81,28 @@ const features = [
 const menswearSystems = [
   {
     icon: Shirt,
+    image: BLUE_OVERSIZE_TS,
     title: "Oversized Tee Formula",
     copy: "Boxy shoulders, relaxed chest, strong sleeve fall, and enough length to sit clean over cargos or denim.",
     points: ["Back-print graphics", "Drop-shoulder cuts", "240 GSM style feel"],
   },
   {
     icon: Gauge,
+    image: WIDE_LEG_BP,
     title: "Cargo Balance",
     copy: "Utility pockets, tapered or straight stacks, and ankle structure that works with sneakers, slides, and boots.",
     points: ["Relaxed thigh room", "Street-ready pockets", "Easy all-day movement"],
   },
   {
     icon: Layers3,
+    image: BLACK_OS_TS,
     title: "Layering Control",
     copy: "Hoodies, overshirts, and tees designed to stack without making the outfit look bulky or lazy.",
     points: ["Tee under hoodie", "Open overshirt fits", "Clean color blocking"],
   },
   {
     icon: WandSparkles,
+    image: TRI_TS_BP2,
     title: "Statement Details",
     copy: "Graphics, washed tones, contrast panels, zip details, and textured basics that make simple outfits hit harder.",
     points: ["Loud when needed", "Neutral when daily", "Made for reels and streets"],
@@ -106,21 +114,29 @@ const outfitCodes = [
     name: "College Beast",
     fit: "Oversized graphic tee + black cargo joggers + white sneakers",
     mood: "Easy, bold, no overthinking.",
+    image:
+      "https://i.pinimg.com/736x/e0/98/f1/e098f133992b8a3eae2993b953602984.jpg",
   },
   {
     name: "Weekend King",
     fit: "Heavy hoodie + relaxed denim + cap + chunky sneakers",
     mood: "Comfort with shape and presence.",
+    image:
+      "https://i.pinimg.com/736x/25/7f/f1/257ff1bc977e09d9127df223301b3887.jpg",
   },
   {
     name: "Night Flex",
     fit: "Dark co-ord set + chain + clean low-top sneakers",
     mood: "Minimal color, maximum attitude.",
+    image:
+      "https://i.pinimg.com/736x/19/ac/98/19ac980c510435f89c3c8ebb9b31a9c4.jpg",
   },
   {
     name: "Daily Rotation",
     fit: "Plain oversized tee + utility pants + slides",
     mood: "Errands, hangouts, rides, repeat.",
+    image:
+      "https://i.pinimg.com/736x/63/c3/7a/63c37a6d208eabb9b472de4cb17a729d.jpg",
   },
 ];
 
@@ -184,6 +200,7 @@ function Home() {
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 to="/shop"
+                search={{ q: undefined }}
                 className="group inline-flex items-center gap-3 rounded-lg bg-fire px-7 py-4 text-sm font-black uppercase tracking-[0.22em] text-primary-foreground shadow-xl shadow-primary/25 transition hover:-translate-y-1"
               >
                 Shop The Drop
@@ -232,39 +249,117 @@ function Home() {
       </section>
 
       <section className="mx-auto grid max-w-7xl gap-10 px-6 py-24 lg:grid-cols-[0.9fr_1.1fr]">
-        <div>
-          <span className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.3em] text-accent">
-            <Crown className="h-4 w-4" />
-            Menswear System
-          </span>
-          <h2 className="mt-3 font-display text-5xl uppercase leading-none md:text-7xl">
-            Not Random.
-            <span className="block text-gradient-fire">Styled Correct.</span>
-          </h2>
-          <p className="mt-6 text-lg leading-8 text-muted-foreground">
-            Modern streetwear is about controlled volume: boxy tops, relaxed
-            bottoms, sharper cuffs, clean sneakers, and layers that make the fit
-            look intentional from the first glance.
-          </p>
+        <div className="space-y-8">
+          <div className="relative overflow-hidden rounded-[2.5rem] border border-border bg-slate-950/95 p-8 shadow-[0_40px_120px_rgba(0,0,0,0.3)]">
+            <div className="absolute -right-16 top-8 h-56 w-56 rounded-full bg-orange-500/10 blur-3xl" />
+            <div className="absolute left-8 bottom-8 h-24 w-24 rounded-full border border-orange-400/20 bg-orange-400/5" />
+            <div className="relative space-y-6">
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-xs font-black uppercase tracking-[0.3em] text-primary">
+                <Crown className="h-4 w-4" />
+                Menswear System
+              </span>
+              <h2 className="max-w-xl font-display text-5xl uppercase leading-tight text-white md:text-7xl">
+                Not Random.
+                <span className="block text-gradient-fire">Styled Correct.</span>
+              </h2>
+              <p className="max-w-xl text-lg leading-8 text-slate-300">
+                Modern streetwear is about controlled volume, clean layering,
+                and strong silhouettes that feel intentional from every angle.
+              </p>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="rounded-3xl border border-border bg-background/90 p-5">
+                  <span className="text-xs font-black uppercase tracking-[0.3em] text-accent">
+                    Design Code
+                  </span>
+                  <p className="mt-4 text-xl font-semibold text-white">
+                    Volume play + sharp edges
+                  </p>
+                </div>
+                <div className="rounded-3xl border border-border bg-background/90 p-5">
+                  <span className="text-xs font-black uppercase tracking-[0.3em] text-accent">
+                    Fit Signal
+                  </span>
+                  <p className="mt-4 text-xl font-semibold text-white">
+                    Oversized structure with balance
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+            <div className="overflow-hidden rounded-3xl border border-border bg-background">
+              <img
+                src="https://images.unsplash.com/photo-1490114538077-0a7f8cb49891?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Streetwear model in black outfit"
+                className="h-80 w-full object-cover transition duration-500 hover:scale-105"
+              />
+            </div>
+            <div className="grid gap-4">
+              <div className="overflow-hidden rounded-3xl border border-border bg-background">
+                <img
+                  src="https://images.unsplash.com/photo-1555529771-835f59fc5efe?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8TUVOUyUyMFdFQVIlMjBTSE9QfGVufDB8fDB8fHww"
+                  alt="Streetwear detail and texture"
+                  className="h-36 w-full object-cover transition duration-500 hover:scale-105"
+                />
+              </div>
+              <div className="overflow-hidden rounded-3xl border border-border bg-background">
+                <img
+                  src="https://plus.unsplash.com/premium_photo-1679056835084-7f21e64a3402?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHQtc2hpcnR8ZW58MHx8MHx8fDA%3D"
+                  alt="Blue oversized tee"
+                  className="h-36 w-full object-cover transition duration-500 hover:scale-105"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="flex flex-col gap-4 rounded-3xl border border-border bg-background/90 p-6">
+              <div className="text-sm font-black uppercase tracking-[0.3em] text-accent">
+                Real Fit
+              </div>
+              <p className="text-lg leading-7 text-slate-300">
+                Street-ready proportions built to stack over cargos and denim
+                without feeling bulky.
+              </p>
+            </div>
+            <div className="overflow-hidden rounded-3xl border border-border bg-background">
+              <img
+                src="https://images.pexels.com/photos/2294342/pexels-photo-2294342.jpeg"
+                alt="Layered streetwear outfit"
+                className="h-full w-full object-cover transition duration-500 hover:scale-105"
+              />
+            </div>
+          </div>
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2">
           {menswearSystems.map((item) => (
             <article
               key={item.title}
-              className="border border-border bg-card p-6 transition hover:-translate-y-1 hover:border-primary"
+              className="border border-border bg-card transition hover:-translate-y-1 hover:border-primary"
             >
-              <item.icon className="h-9 w-9 text-primary" />
-              <h3 className="mt-5 font-display text-3xl">{item.title}</h3>
-              <p className="mt-3 leading-7 text-muted-foreground">{item.copy}</p>
-              <ul className="mt-5 space-y-2">
-                {item.points.map((point) => (
-                  <li key={point} className="flex items-center gap-2 text-sm font-bold">
-                    <Check className="h-4 w-4 text-accent" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
+              <div className="relative overflow-hidden bg-background">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-56 w-full object-cover transition duration-500 hover:scale-105"
+                />
+              </div>
+              <div className="p-6">
+                <item.icon className="h-9 w-9 text-primary" />
+                <h3 className="mt-5 font-display text-3xl">{item.title}</h3>
+                <p className="mt-3 leading-7 text-muted-foreground">{item.copy}</p>
+                <ul className="mt-5 space-y-2">
+                  {item.points.map((point) => (
+                    <li key={point} className="flex items-center gap-2 text-sm font-bold">
+                      <Check className="h-4 w-4 text-accent" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </article>
           ))}
         </div>
@@ -286,6 +381,7 @@ function Home() {
 
             <Link
               to="/shop"
+              search={{ q: undefined }}
               className="group inline-flex items-center gap-2 font-black uppercase tracking-[0.24em] text-primary"
             >
               View All
@@ -304,7 +400,14 @@ function Home() {
       <section className="mx-auto grid max-w-7xl gap-6 px-6 py-24 lg:grid-cols-4">
         {outfitCodes.map((outfit, index) => (
           <article key={outfit.name} className="border border-border bg-card p-7">
-            <div className="font-display text-5xl text-gradient-fire">
+            <div className="overflow-hidden rounded-3xl border border-border bg-background">
+              <img
+                src={outfit.image}
+                alt={outfit.name}
+                className="h-52 w-full object-cover transition duration-500 hover:scale-105"
+              />
+            </div>
+            <div className="font-display text-5xl text-gradient-fire mt-6">
               0{index + 1}
             </div>
             <h3 className="mt-5 font-display text-3xl">{outfit.name}</h3>
@@ -407,6 +510,7 @@ function Home() {
           </p>
           <Link
             to="/shop"
+            search={{ q: undefined }}
             className="mt-10 inline-flex items-center gap-3 rounded-lg bg-fire px-8 py-4 text-sm font-black uppercase tracking-[0.24em] text-primary-foreground shadow-xl shadow-primary/25 transition hover:-translate-y-1"
           >
             Explore The Drop

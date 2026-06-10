@@ -1,30 +1,35 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
-  ArrowRight,
+  Search,
+  ShoppingCart,
+  User,
+  Menu,
+  X,
+  Sparkles,
   ChevronRight,
   Flame,
-  Instagram,
-  Menu,
+  ArrowRight,
   MessageCircle,
   ShoppingBag,
-  Sparkles,
-  X,
 } from "lucide-react";
 
 import logo from "@/assets/logo.png";
+import { SearchDialog } from "@/components/SearchDialog";
 import { useCart } from "@/hooks/use-cart";
-
 const nav = [
   { to: "/", label: "HOME" },
   { to: "/shop", label: "SHOP" },
   { to: "/about", label: "ABOUT" },
   { to: "/contact", label: "CONTACT" },
+
+
 ] as const;
 
 export function Header() {
   const { count: cartCount } = useCart();
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [scroll, setScroll] = useState(0);
 
   const pathname = useRouterState({
@@ -34,6 +39,19 @@ export function Header() {
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "k" && (event.metaKey || event.ctrlKey)) {
+        event.preventDefault();
+        setSearchOpen((value) => !value);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -90,6 +108,7 @@ export function Header() {
                   <Link
                     key={item.to}
                     to={item.to}
+                    search={item.to === "/shop" ? { q: "" } : undefined}
                     className={`relative rounded-full px-6 py-3 text-xs font-black uppercase tracking-[0.25em] transition ${
                       active
                         ? "bg-fire text-primary-foreground shadow-lg shadow-primary/20"
@@ -101,63 +120,55 @@ export function Header() {
                 );
               })}
             </nav>
+<div className="flex items-center gap-3">
+  {/* Search */}
+  <button
+    type="button"
+    onClick={() => setSearchOpen(true)}
+    className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-primary hover:text-primary"
+    aria-label="Search"
+  >
+    <Search className="h-5 w-5" />
+  </button>
 
-            <div className="flex items-center gap-3">
-              <a
-                href="https://instagram.com/_style_daddy_"
-                target="_blank"
-                rel="noreferrer"
-                className="hidden h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-pink-500 hover:text-pink-500 md:flex"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
+  {/* User */}
+  <Link
+    to="/account"
+    className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-primary hover:text-primary"
+    aria-label="User Account"
+  >
+    <User className="h-5 w-5" />
+  </Link>
 
-              <a
-                href="https://wa.me/916309502357"
-                target="_blank"
-                rel="noreferrer"
-                className="hidden h-12 w-12 items-center justify-center rounded-full border border-green-500/40 bg-green-500/10 transition hover:bg-green-500 hover:text-black md:flex"
-                aria-label="WhatsApp"
-              >
-                <MessageCircle className="h-5 w-5" />
-              </a>
+  {/* Cart */}
+  <Link
+    to="/cart"
+    className="relative inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-primary hover:text-primary"
+    aria-label={`Cart${cartCount > 0 ? `, ${cartCount} items` : ""}`}
+  >
+    <ShoppingCart className="h-5 w-5" />
 
-              <Link
-                to="/cart"
-                className="relative inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-primary hover:text-primary"
-                aria-label={`Cart${cartCount > 0 ? `, ${cartCount} items` : ""}`}
-              >
-                <ShoppingBag className="h-5 w-5" />
-                {cartCount > 0 ? (
-                  <span
-                    suppressHydrationWarning
-                    className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-fire px-1 text-[10px] font-black text-primary-foreground"
-                  >
-                    {cartCount > 9 ? "9+" : cartCount}
-                  </span>
-                ) : null}
-              </Link>
+    {cartCount > 0 && (
+      <span
+        className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-fire px-1 text-[10px] font-black text-primary-foreground"
+      >
+        {cartCount > 9 ? "9+" : cartCount}
+      </span>
+    )}
+  </Link>
 
-              <Link
-                to="/shop"
-                className="hidden items-center gap-3 rounded-full bg-fire px-7 py-3.5 text-sm font-black uppercase tracking-[0.2em] text-primary-foreground shadow-xl shadow-primary/25 transition hover:-translate-y-1 md:inline-flex"
-              >
-                <ShoppingBag className="h-5 w-5" />
-                Shop Now
-              </Link>
-
-              <button
-                type="button"
-                onClick={() => setOpen((value) => !value)}
-                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-primary hover:text-primary lg:hidden"
-                aria-label={open ? "Close menu" : "Open menu"}
-              >
-                {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
+  {/* Mobile Menu */}
+  <button
+    type="button"
+    onClick={() => setOpen((value) => !value)}
+    className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-primary hover:text-primary lg:hidden"
+    aria-label={open ? "Close menu" : "Open menu"}
+  >
+    {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+  </button>
+</div>
             </div>
           </div>
-        </div>
       </header>
 
       {open && (
@@ -224,6 +235,7 @@ export function Header() {
 
               <Link
                 to="/shop"
+                search={{ q: "" }}
                 className="flex items-center justify-center gap-3 rounded-lg bg-fire px-6 py-4 font-black uppercase tracking-[0.18em] text-primary-foreground"
               >
                 <Flame className="h-5 w-5" />
@@ -234,6 +246,8 @@ export function Header() {
           </div>
         </div>
       )}
+
+      <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
     </>
   );
 }

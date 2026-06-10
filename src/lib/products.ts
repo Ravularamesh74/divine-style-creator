@@ -21,6 +21,11 @@ import TRI_TS_BP from "@/assets/TRI-TS-BP.jpeg";
 import TRI_TS_BP2 from "@/assets/TRI-TS-BP2.jpeg";
 import WHITE_OS_TS_BP from "@/assets/WHITE-OS-TS-BP.jpeg";
 import WHITE_OS_TS_BP2 from "@/assets/WHITE-OS-TS-BP2.jpeg";
+import BLACK_TS from "@/assets/Black-TS.jpeg";
+import WHITE_TS_OF from "@/assets/WHITE-TS-OF.jpeg";
+import GOLD_BRACELET from "@/assets/Gold-Bracelet.jpeg";
+import GOLD_BRACELET_DIAMOND from "@/assets/Gold-bracelet-diamond.jpeg";
+import ROYAL_STYLE_STEEL_BRACELET from "@/assets/Royal-Style-stainless-steel-bracelet.jpeg";
 
 export type Product = {
   id: string;
@@ -33,7 +38,8 @@ export type Product = {
     | "Hoodies"
     | "Shirts"
     | "Jackets"
-    | "Combos";
+    | "Combos"
+    | "Accessories";
   badge?: string;
   image: string;
   images?: string[];
@@ -166,6 +172,59 @@ export const products: Product[] = [
   },
   {
     id: "11",
+    name: "Black Essential Tee",
+    price: 699,
+    oldPrice: 999,
+    category: "T-Shirts",
+    badge: "FRESH",
+    image: BLACK_TS,
+    description:
+      "Minimal black tee with premium cotton build for everyday wear.",
+  },
+  {
+    id: "12",
+    name: "White Oversized Fit Tee",
+    price: 799,
+    oldPrice: 1199,
+    category: "T-Shirts",
+    badge: "NEW",
+    image: WHITE_TS_OF,
+    description:
+      "Breathable oversized white tee with clean lines and soft touch.",
+  },
+  {
+    id: "13",
+    name: "Gold Bracelet — Classic",
+    price: 2999,
+    oldPrice: 3999,
+    category: "Accessories",
+    badge: "BLAZE",
+    image: GOLD_BRACELET,
+    description:
+      "Premium gold bracelet with polished finish for elegant street style.",
+  },
+  {
+    id: "14",
+    name: "Diamond Gold Bracelet",
+    price: 4999,
+    oldPrice: 6999,
+    category: "Accessories",
+    image: GOLD_BRACELET_DIAMOND,
+    description:
+      "Luxury gold bracelet with diamond-inspired detailing for standout looks.",
+  },
+  {
+    id: "15",
+    name: "Royal Stainless Steel Bracelet",
+    price: 2499,
+    oldPrice: 3499,
+    category: "Accessories",
+    image: ROYAL_STYLE_STEEL_BRACELET,
+    description:
+      "Durable stainless steel bracelet with premium polish and modern edge.",
+  },
+  {
+    id: "16",
     name: "CK Elite Crinkle Linen",
     price: 899,
     oldPrice: 1299,
@@ -194,6 +253,7 @@ export const categories = [
   "Shirts",
   "Jackets",
   "Combos",
+  "Accessories",
 ] as const;
 
 export function getProductImages(product: Product) {
