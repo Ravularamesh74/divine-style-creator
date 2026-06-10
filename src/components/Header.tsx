@@ -89,24 +89,47 @@ export function Header() {
     <div className="bg-black text-white">
       <div className="mx-auto flex h-12 max-w-7xl items-center justify-between px-6">
 
-        <div className="flex items-center gap-8 text-xs uppercase">
+        {/* left: hidden on small to reduce clutter */}
+        <div className="hidden md:flex items-center gap-6 text-xs uppercase">
           <button>STYLE DADDY CLUB</button>
 
           <div>
             Delivering To
-            <div className="underline">
-              Add delivery location
-            </div>
+            <div className="underline">Add delivery location</div>
           </div>
         </div>
 
-        <div className="flex items-center gap-6">
+        {/* mobile icon row */}
+        <div className="flex items-center gap-3 md:hidden">
+          <button
+            aria-label="Open menu"
+            onClick={() => setOpen((v) => !v)}
+            className="p-2"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
 
-          <Link to={"/store" as any}>
-            Store
+          <button
+            aria-label="Search"
+            onClick={() => setSearchOpen(true)}
+            className="p-2"
+          >
+            <Search className="h-5 w-5" />
+          </button>
+
+          <Link to={user ? "/cart" : "/"} className="relative p-2">
+            <ShoppingCart className="h-5 w-5" />
+            {cartCount > 0 && (
+              <span className="absolute -right-1 -top-1 rounded-full bg-fire px-1 text-[10px] text-white">
+                {cartCount}
+              </span>
+            )}
           </Link>
+        </div>
 
-
+        {/* right: desktop links */}
+        <div className="hidden md:flex items-center gap-6">
+          <Link to={"/store" as any}>Store</Link>
 
           <button
             onClick={() => {
@@ -117,9 +140,7 @@ export function Header() {
             {user ? user.name : "Login"}
           </button>
 
-          <Link to={"/wishlist" as any}>
-            Wishlist
-          </Link>
+          <Link to={"/wishlist" as any}>Wishlist</Link>
 
           <Link
             to={user ? "/cart" : "/"}
@@ -140,39 +161,26 @@ export function Header() {
               </span>
             )}
           </Link>
-
         </div>
       </div>
     </div>
 
     {/* MAIN HEADER */}
     <div className="border-b border-white/10">
-      <div className="mx-auto flex h-20 max-w-7xl items-center px-6 text-white">
+      <div className="mx-auto flex h-16 md:h-20 max-w-7xl items-center px-4 md:px-6 text-white">
 
         {/* LOGO */}
-        <Link
-          to="/"
-          className="flex items-center gap-3"
-        >
-          <img
-            src={logo}
-            alt="Style Daddy"
-            className="h-16 w-16 rounded-full"
-          />
+        <Link to="/" className="flex items-center gap-3">
+          <img src={logo} alt="Style Daddy" className="h-10 w-10 rounded-full md:h-16 md:w-16" />
 
-          <div>
-            <h1 className="text-lg font-bold tracking-[0.3em] text-white">
-              STYLE DADDY
-            </h1>
-
-            <p className="text-xs text-white">
-              MEN'S-WEAR
-            </p>
+          <div className="hidden sm:block">
+            <h1 className="text-sm md:text-lg font-bold tracking-[0.18em] text-white">STYLE DADDY</h1>
+            <p className="text-[10px] md:text-xs text-white">MEN'S-WEAR</p>
           </div>
         </Link>
 
         {/* NAV */}
-        <nav className="ml-12 flex gap-8">
+        <nav className="ml-6 hidden lg:flex gap-8">
           {nav.map((item) => (
             <Link
               key={item.to}
@@ -185,15 +193,13 @@ export function Header() {
         </nav>
 
         {/* SEARCH */}
+        {/* desktop search input */}
         <button
           onClick={() => setSearchOpen(true)}
-          className="ml-auto flex w-80 items-center gap-3 border-b border-white/20 pb-2 text-white"
+          className="ml-auto hidden md:flex w-80 items-center gap-3 border-b border-white/20 pb-2 text-white"
         >
           <Search className="h-5 w-5" />
-
-          <span className="text-white/70">
-            Search Style Daddy
-          </span>
+          <span className="text-white/70">Search Style Daddy</span>
         </button>
       </div>
     </div>

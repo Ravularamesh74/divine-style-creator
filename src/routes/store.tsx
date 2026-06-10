@@ -27,16 +27,16 @@ function StoresPage() {
         <main className="min-h-screen bg-background">
 
             {/* HERO */}
-            <section className="border-b border-border py-24">
+            <section className="border-b border-border py-12 md:py-24">
                 <div className="mx-auto max-w-7xl px-6 text-center">
 
                     <MapPin className="mx-auto h-12 w-12 text-primary" />
 
-                    <h1 className="mt-6 font-display text-6xl uppercase md:text-8xl">
+                    <h1 className="mt-6 font-display text-4xl uppercase md:text-7xl lg:text-8xl">
                         Stores
                     </h1>
 
-                    <p className="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground">
+                    <p className="mx-auto mt-6 max-w-3xl text-base md:text-lg text-muted-foreground">
                         Visit Style Daddy Menswear and discover
                         oversized tees, cargos, hoodies, denim,
                         accessories, and the latest streetwear drops.
@@ -46,17 +46,14 @@ function StoresPage() {
             </section>
 
             {/* STORE LIST */}
-            <section className="mx-auto max-w-7xl px-6 py-20">
+            <section className="mx-auto max-w-7xl px-6 py-12 md:py-20">
 
                 <div className="grid gap-8">
 
                     {stores.map((store) => (
-                        <div
-                            key={store.name}
-                            className="border border-border bg-card p-8"
-                        >
+                        <div key={store.name} className="border border-border bg-card p-6 md:p-8">
 
-                            <h2 className="font-display text-4xl uppercase">
+                            <h2 className="font-display text-2xl md:text-4xl uppercase">
                                 {store.name}
                             </h2>
 
@@ -110,7 +107,7 @@ function StoresPage() {
                                 href={store.map}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="mt-8 inline-flex items-center gap-3 rounded-lg bg-fire px-8 py-4 text-sm font-black uppercase tracking-[0.2em] text-primary-foreground"
+                                className="mt-8 inline-flex w-full justify-center items-center gap-3 rounded-lg bg-fire px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-primary-foreground md:inline-flex md:w-auto md:px-8 md:py-4 md:tracking-[0.2em]"
                             >
                                 <Navigation className="h-4 w-4" />
                                 Get Directions
@@ -124,11 +121,11 @@ function StoresPage() {
             </section>
 
             {/* MAP SECTION */}
-            <section className="border-t border-border py-24">
+            <section className="border-t border-border py-12 md:py-24">
 
                 <div className="mx-auto max-w-7xl px-6">
 
-                    <h2 className="mb-8 text-center font-display text-5xl uppercase">
+                    <h2 className="mb-8 text-center font-display text-3xl uppercase md:text-5xl">
                         Find Us
                     </h2>
 
@@ -136,19 +133,19 @@ function StoresPage() {
                         <iframe
                             title="Style Daddy Store Location"
                             src="https://maps.google.com/maps?q=Nacharam%20Hyderabad&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                            className="h-[500px] w-full"
+                            className="h-56 md:h-[500px] w-full"
                             loading="lazy"
                         />
                     </div>
                     <section className="border-t border-border py-24">
                         <div className="mx-auto max-w-5xl px-6">
 
-                            <h2 className="text-center font-display text-5xl uppercase md:text-7xl">
-                                Style Daddy
-                                <span className="block text-gradient-fire">
-                                    Menswear
-                                </span>
-                            </h2>
+                            <h2 className="text-center font-display text-3xl uppercase md:text-5xl lg:text-7xl">
+                                        Style Daddy
+                                        <span className="block text-gradient-fire">
+                                            Menswear
+                                        </span>
+                                    </h2>
 
                             <div className="mt-12 space-y-8 text-lg leading-9 text-muted-foreground">
 
@@ -177,10 +174,10 @@ function StoresPage() {
                                     to upgrade your wardrobe in one place.
                                 </p>
 
-                                <div className="grid gap-6 md:grid-cols-2">
+                                    <div className="grid gap-6 md:grid-cols-2">
 
                                     <div className="border border-border bg-card p-8">
-                                        <h3 className="font-display text-3xl uppercase text-primary">
+                                        <h3 className="font-display text-2xl md:text-3xl uppercase text-primary">
                                             Why Style Daddy?
                                         </h3>
 
@@ -196,7 +193,7 @@ function StoresPage() {
                                     </div>
 
                                     <div className="border border-border bg-card p-8">
-                                        <h3 className="font-display text-3xl uppercase text-primary">
+                                        <h3 className="font-display text-2xl md:text-3xl uppercase text-primary">
                                             Why Men Choose Style Daddy
                                         </h3>
 
@@ -214,9 +211,9 @@ function StoresPage() {
 
                                 </div>
 
-                                <div className="rounded-xl border border-primary/20 bg-primary/5 p-10 text-center">
+                                <div className="rounded-xl border border-primary/20 bg-primary/5 p-8 md:p-10 text-center">
 
-                                    <h3 className="font-display text-4xl uppercase md:text-6xl">
+                                    <h3 className="font-display text-3xl md:text-4xl lg:text-6xl uppercase">
                                         Built For Real Men.
                                         <span className="block text-gradient-fire">
                                             Real Style. Real Life.
@@ -233,13 +230,13 @@ function StoresPage() {
 
                                 </div>
 
-                                <div className="text-center pt-8">
+                                    <div className="text-center pt-8">
 
-                                    <h3 className="font-display text-5xl uppercase md:text-7xl">
+                                    <h3 className="font-display text-3xl md:text-5xl uppercase">
                                         Style Daddy
                                     </h3>
 
-                                    <p className="mt-3 font-display text-2xl uppercase text-gradient-fire md:text-4xl">
+                                    <p className="mt-3 font-display text-xl md:text-2xl uppercase text-gradient-fire">
                                         Built To Flex
                                     </p>
 
