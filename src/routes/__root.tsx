@@ -9,10 +9,12 @@ import {
 } from "@tanstack/react-router";
 import { AlertTriangle, ArrowRight, Home, RotateCcw, Sparkles } from "lucide-react";
 
+import { AuthDialog } from "@/components/AuthDialog";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { MarqueeBanner } from "@/components/MarqueeBanner";
 import CookieBanner from "@/components/CookieBanner";
+import { AuthProvider } from "@/hooks/use-auth";
 
 import appCss from "../styles.css?url";
 
@@ -162,17 +164,20 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="dark flex min-h-screen flex-col bg-background text-foreground antialiased">
-        <MarqueeBanner />
-        <Header />
+      <AuthProvider>
+        <div className="dark flex min-h-screen flex-col bg-background text-foreground antialiased">
+          <MarqueeBanner />
+          <Header />
 
-        <main className="flex-1">
-          <Outlet />
-        </main>
+          <main className="flex-1">
+            <Outlet />
+          </main>
 
-        <Footer />
-        <CookieBanner />
-      </div>
+          <Footer />
+          <CookieBanner />
+          <AuthDialog />
+        </div>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

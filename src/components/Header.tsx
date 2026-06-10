@@ -16,6 +16,7 @@ import {
 
 import logo from "@/assets/logo.png";
 import { SearchDialog } from "@/components/SearchDialog";
+import { useAuth } from "@/hooks/use-auth";
 import { useCart } from "@/hooks/use-cart";
 const nav = [
   { to: "/", label: "HOME" },
@@ -28,6 +29,7 @@ const nav = [
 
 export function Header() {
   const { count: cartCount } = useCart();
+  const { user, setOpenAuth, setAuthMode } = useAuth();
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [scroll, setScroll] = useState(0);
@@ -132,40 +134,52 @@ export function Header() {
   </button>
 
   {/* User */}
-  <a
-    href="/account"
-    className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-primary hover:text-primary"
-    aria-label="User Account"
-  >
-    <User className="h-5 w-5" />
-  </a>
+    <button
+      type="button"
+      onClick={() => {
+        setAuthMode(user ? "account" : "login");
+        setOpenAuth(true);
+      }}
+      className="inline-flex h-12 min-w-[3rem] items-center justify-center gap-2 rounded-full border border-border bg-card px-3 text-sm font-black uppercase tracking-[0.16em] text-muted-foreground transition hover:border-primary hover:text-primary"
+      aria-label="User Account"
+    >
+      <User className="h-5 w-5" />
+      {user ? <span className="hidden sm:inline">{user.name.split(" ")[0]}</span> : "Login"}
+    </button>
 
-  {/* Cart */}
-  <Link
-    to="/cart"
-    className="relative inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-primary hover:text-primary"
-    aria-label={`Cart${cartCount > 0 ? `, ${cartCount} items` : ""}`}
-  >
-    <ShoppingCart className="h-5 w-5" />
+    {/* Cart */}
+    <Link
+      to={user ? "/cart" : "/"}
+      onClick={(event) => {
+        if (!user) {
+          event.preventDefault();
+          setAuthMode("login");
+          setOpenAuth(true);
+        }
+      }}
+      className="relative inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-primary hover:text-primary"
+      aria-label={`Cart${cartCount > 0 ? `, ${cartCount} items` : ""}`}
+    >
+      <ShoppingCart className="h-5 w-5" />
 
-    {cartCount > 0 && (
-      <span
-        className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-fire px-1 text-[10px] font-black text-primary-foreground"
-      >
-        {cartCount > 9 ? "9+" : cartCount}
-      </span>
-    )}
-  </Link>
+      {cartCount > 0 && (
+        <span
+          className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-fire px-1 text-[10px] font-black text-primary-foreground"
+        >
+          {cartCount > 9 ? "9+" : cartCount}
+        </span>
+      )}
+    </Link>
 
-  {/* Mobile Menu */}
-  <button
-    type="button"
-    onClick={() => setOpen((value) => !value)}
-    className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-primary hover:text-primary lg:hidden"
-    aria-label={open ? "Close menu" : "Open menu"}
-  >
-    {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-  </button>
+    {/* Mobile Menu */}
+    <button
+      type="button"
+      onClick={() => setOpen((value) => !value)}
+      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-primary hover:text-primary lg:hidden"
+      aria-label={open ? "Close menu" : "Open menu"}
+    >
+      {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+    </button>
 </div>
             </div>
           </div>
@@ -220,28 +234,25 @@ export function Header() {
                 WhatsApp Us
               </a>
 
-              <Link
-                to="/cart"
-                className="relative flex items-center justify-center gap-3 rounded-lg border border-border bg-card px-6 py-4 font-black uppercase tracking-[0.18em] transition hover:border-primary hover:text-primary"
-              >
-                <ShoppingBag className="h-5 w-5" />
-                Cart
-                {cartCount > 0 && (
-                  <span className="rounded-full bg-fire px-2 py-0.5 text-[10px] text-primary-foreground">
-                    {cartCount}
-                  </span>
-                )}
-              </Link>
-
-              <Link
-                to="/shop"
-                search={{ q: "" }}
-                className="flex items-center justify-center gap-3 rounded-lg bg-fire px-6 py-4 font-black uppercase tracking-[0.18em] text-primary-foreground"
-              >
-                <Flame className="h-5 w-5" />
-                Shop Drops
-                <ArrowRight className="h-5 w-5" />
-              </Link>
+            <Link
+              to={user ? "/cart" : "/"}
+              onClick={(event) => {
+                if (!user) {
+                  event.preventDefault();
+                  setAuthMode("login");
+                  setOpenAuth(true);
+                }
+              }}
+              className="relative flex items-center justify-center gap-3 rounded-lg border border-border bg-card px-6 py-4 font-black uppercase tracking-[0.18em] transition hover:border-primary hover:text-primary"
+            >
+              <ShoppingBag className="h-5 w-5" />
+              {user ? "Cart" : "Login to buy"}
+              {cartCount > 0 && (
+                <span className="rounded-full bg-fire px-2 py-0.5 text-[10px] text-primary-foreground">
+                  {cartCount}
+                </span>
+              )}
+            </Link>
             </div>
           </div>
         </div>
