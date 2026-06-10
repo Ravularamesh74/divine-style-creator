@@ -5,7 +5,7 @@ export type CartItem = {
 };
 
 export const CART_STORAGE_KEY = "style-daddy-cart";
-export const WHATSAPP_NUMBER = "919640639926";
+export const WHATSAPP_NUMBER = "916309376811";
 
 const cartUpdatedEvent = "style-daddy-cart-updated";
 

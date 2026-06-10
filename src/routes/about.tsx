@@ -284,12 +284,12 @@ function AboutPage() {
           <div className="grid gap-4 text-muted-foreground">
             <p className="flex gap-3">
               <Phone className="h-5 w-5 shrink-0 text-primary" />
-              Customer Care +91 63059 03257
+              Customer Care +91 63093 76811
             </p>
 
             <p className="flex gap-3">
               <MessageCircle className="h-5 w-5 shrink-0 text-primary" />
-              WhatsApp Orders +91 63059 03257
+              WhatsApp Orders +91 63093 76811
             </p>
 
             <p className="flex gap-3">

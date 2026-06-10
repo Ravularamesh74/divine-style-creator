@@ -18,9 +18,15 @@ import logo from "@/assets/logo.png";
 import { SearchDialog } from "@/components/SearchDialog";
 import { useAuth } from "@/hooks/use-auth";
 import { useCart } from "@/hooks/use-cart";
+
+
 const nav = [
+
   { to: "/", label: "HOME" },
-  { to: "/shop", label: "SHOP" },
+  { to: "/new-in", label: "NEW IN" },
+  { to: "/sale", label: "SALE" },
+  { to: "/shop", label: "PRODUCTS" },
+  { to: "/collections", label: "COLLECTIONS" },
   { to: "/about", label: "ABOUT" },
   { to: "/contact", label: "CONTACT" },
 
@@ -71,120 +77,133 @@ export function Header() {
   }, []);
 
   return (
-    <>
-      <div className="fixed left-0 top-0 z-[100] h-1 bg-fire shadow-lg shadow-primary/40 transition-all duration-150" style={{ width: `${scroll}%` }} />
+   <>
+  <div
+    className="fixed left-0 top-0 z-[100] h-1 bg-fire"
+    style={{ width: `${scroll}%` }}
+  />
 
-      <header className="sticky top-0 z-50 border-b border-border bg-background/75 backdrop-blur-2xl">
-        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent" />
+  <header className="sticky top-0 z-50 bg-black text-white shadow-sm">
 
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="flex h-24 items-center justify-between gap-5">
-            <Link to="/" className="group flex min-w-0 items-center gap-4">
-              <div className="relative shrink-0">
-                <div className="absolute inset-0 rounded-full bg-primary/30 blur-xl transition duration-500 group-hover:scale-150" />
-                <img
-                  src={logo}
-                  alt="Style Daddy"
-                  className="relative h-16 w-16 rounded-full border-2 border-primary object-cover glow-fire"
-                />
-              </div>
+    {/* TOP BAR */}
+    <div className="bg-black text-white">
+      <div className="mx-auto flex h-12 max-w-7xl items-center justify-between px-6">
 
-              <div className="min-w-0">
-                <h1 className="font-display text-2xl leading-none tracking-[0.22em]">
-                  STYLE
-                </h1>
-                <p className="mt-1 text-xs font-black tracking-[0.35em] text-primary">
-                  DADDY
-                </p>
-              </div>
-            </Link>
+        <div className="flex items-center gap-8 text-xs uppercase">
+          <button>STYLE DADDY CLUB</button>
 
-            <nav className="hidden items-center rounded-full border border-border bg-card/70 p-1 lg:flex">
-              {nav.map((item) => {
-                const active =
-                  item.to === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(item.to);
-
-                return (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                    search={item.to === "/shop" ? { q: "" } : undefined}
-                    className={`relative rounded-full px-6 py-3 text-xs font-black uppercase tracking-[0.25em] transition ${
-                      active
-                        ? "bg-fire text-primary-foreground shadow-lg shadow-primary/20"
-                        : "text-muted-foreground hover:text-primary"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </nav>
-<div className="flex items-center gap-3">
-  {/* Search */}
-  <button
-    type="button"
-    onClick={() => setSearchOpen(true)}
-    className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-primary hover:text-primary"
-    aria-label="Search"
-  >
-    <Search className="h-5 w-5" />
-  </button>
-
-  {/* User */}
-    <button
-      type="button"
-      onClick={() => {
-        setAuthMode(user ? "account" : "login");
-        setOpenAuth(true);
-      }}
-      className="inline-flex h-12 min-w-[3rem] items-center justify-center gap-2 rounded-full border border-border bg-card px-3 text-sm font-black uppercase tracking-[0.16em] text-muted-foreground transition hover:border-primary hover:text-primary"
-      aria-label="User Account"
-    >
-      <User className="h-5 w-5" />
-      {user ? <span className="hidden sm:inline">{user.name.split(" ")[0]}</span> : "Login"}
-    </button>
-
-    {/* Cart */}
-    <Link
-      to={user ? "/cart" : "/"}
-      onClick={(event) => {
-        if (!user) {
-          event.preventDefault();
-          setAuthMode("login");
-          setOpenAuth(true);
-        }
-      }}
-      className="relative inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-primary hover:text-primary"
-      aria-label={`Cart${cartCount > 0 ? `, ${cartCount} items` : ""}`}
-    >
-      <ShoppingCart className="h-5 w-5" />
-
-      {cartCount > 0 && (
-        <span
-          className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-fire px-1 text-[10px] font-black text-primary-foreground"
-        >
-          {cartCount > 9 ? "9+" : cartCount}
-        </span>
-      )}
-    </Link>
-
-    {/* Mobile Menu */}
-    <button
-      type="button"
-      onClick={() => setOpen((value) => !value)}
-      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-primary hover:text-primary lg:hidden"
-      aria-label={open ? "Close menu" : "Open menu"}
-    >
-      {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-    </button>
-</div>
+          <div>
+            Delivering To
+            <div className="underline">
+              Add delivery location
             </div>
           </div>
-      </header>
+        </div>
 
+        <div className="flex items-center gap-6">
+
+          <Link to={"/store" as any}>
+            Store
+          </Link>
+
+
+
+          <button
+            onClick={() => {
+              setAuthMode(user ? "account" : "login");
+              setOpenAuth(true);
+            }}
+          >
+            {user ? user.name : "Login"}
+          </button>
+
+          <Link to={"/wishlist" as any}>
+            Wishlist
+          </Link>
+
+          <Link
+            to={user ? "/cart" : "/"}
+            onClick={(e) => {
+              if (!user) {
+                e.preventDefault();
+                setAuthMode("login");
+                setOpenAuth(true);
+              }
+            }}
+            className="relative"
+          >
+            <ShoppingCart className="h-5 w-5" />
+
+            {cartCount > 0 && (
+              <span className="absolute -right-2 -top-2 rounded-full bg-fire px-1 text-[10px] text-white">
+                {cartCount}
+              </span>
+            )}
+          </Link>
+
+        </div>
+      </div>
+    </div>
+
+    {/* MAIN HEADER */}
+    <div className="border-b border-white/10">
+      <div className="mx-auto flex h-20 max-w-7xl items-center px-6 text-white">
+
+        {/* LOGO */}
+        <Link
+          to="/"
+          className="flex items-center gap-3"
+        >
+          <img
+            src={logo}
+            alt="Style Daddy"
+            className="h-16 w-16 rounded-full"
+          />
+
+          <div>
+            <h1 className="text-lg font-bold tracking-[0.3em] text-white">
+              STYLE DADDY
+            </h1>
+
+            <p className="text-xs text-white">
+              MEN'S-WEAR
+            </p>
+          </div>
+        </Link>
+
+        {/* NAV */}
+        <nav className="ml-12 flex gap-8">
+          {nav.map((item) => (
+            <Link
+              key={item.to}
+              to={item.to as any}
+              className="text-sm uppercase text-white hover:text-primary"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* SEARCH */}
+        <button
+          onClick={() => setSearchOpen(true)}
+          className="ml-auto flex w-80 items-center gap-3 border-b border-white/20 pb-2 text-white"
+        >
+          <Search className="h-5 w-5" />
+
+          <span className="text-white/70">
+            Search Style Daddy
+          </span>
+        </button>
+      </div>
+    </div>
+
+  </header>
+
+  <SearchDialog
+    open={searchOpen}
+    onOpenChange={setSearchOpen}
+  />
       {open && (
         <div className="fixed inset-0 top-24 z-40 overflow-y-auto bg-background/95 px-6 py-8 backdrop-blur-2xl lg:hidden">
           <div className="mx-auto max-w-2xl">
@@ -209,7 +228,7 @@ export function Header() {
                 return (
                   <Link
                     key={item.to}
-                    to={item.to}
+                    to={item.to as any}
                     className={`flex items-center justify-between border p-5 text-2xl font-black uppercase tracking-[0.18em] transition ${
                       active
                         ? "border-primary bg-primary/10 text-primary"
@@ -225,7 +244,7 @@ export function Header() {
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               <a
-                href="https://wa.me/916309502357"
+                href="https://wa.me/916309376811"
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-center gap-3 rounded-lg bg-green-500 px-6 py-4 font-black uppercase tracking-[0.18em] text-black"

@@ -38,7 +38,7 @@ const items = [
   {
     icon: MessageCircle,
     text: "WHATSAPP ORDERS",
-    accent: "+91 96406 39926",
+    accent: "+91 63093 76811",
   },
   {
     icon: Flame,

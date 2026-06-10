@@ -94,7 +94,7 @@ function TrackOrder() {
 
             <div className="mt-10 flex flex-wrap gap-4">
               <a
-                href="https://wa.me/916309502357?text=Hi%20Style%20Daddy%2C%20I%20want%20to%20track%20my%20order."
+                href="https://wa.me/916309376811?text=Hi%20Style%20Daddy%2C%20I%20want%20to%20track%20my%20order."
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-3 rounded-lg bg-green-500 px-7 py-4 text-sm font-black uppercase tracking-[0.22em] text-black shadow-xl shadow-green-500/20 transition hover:-translate-y-1"
@@ -140,7 +140,7 @@ function TrackOrder() {
             </div>
 
             <a
-              href="https://wa.me/916309502357?text=Hi%20Style%20Daddy%2C%20please%20help%20me%20track%20my%20order."
+              href="https://wa.me/916309376811?text=Hi%20Style%20Daddy%2C%20please%20help%20me%20track%20my%20order."
               target="_blank"
               rel="noreferrer"
               className="mt-6 inline-flex w-full items-center justify-center gap-3 rounded-lg bg-fire px-6 py-4 text-sm font-black uppercase tracking-[0.2em] text-primary-foreground transition hover:-translate-y-1"
@@ -214,7 +214,7 @@ function TrackOrder() {
       <section className="border-t border-border px-6 py-20">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-3">
           <a
-            href="https://wa.me/916309502357?text=Hi%20Style%20Daddy%2C%20I%20want%20to%20track%20my%20order."
+            href="https://wa.me/916309376811?text=Hi%20Style%20Daddy%2C%20I%20want%20to%20track%20my%20order."
             target="_blank"
             rel="noreferrer"
             className="group border border-border bg-card p-7 transition hover:-translate-y-1 hover:border-primary"
@@ -227,13 +227,13 @@ function TrackOrder() {
           </a>
 
           <a
-            href="tel:+916309502357"
+            href="tel:+916309376811"
             className="group border border-border bg-card p-7 transition hover:-translate-y-1 hover:border-primary"
           >
             <Phone className="h-8 w-8 text-primary" />
             <h3 className="mt-4 font-display text-3xl">Call</h3>
             <p className="mt-2 text-muted-foreground group-hover:text-primary">
-              +91 6309502357
+              +91 63093 76811
             </p>
           </a>
 

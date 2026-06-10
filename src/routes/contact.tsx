@@ -33,7 +33,7 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-const phone = "+91 96406 39926";
+const phone = "+91 63093 76811";
 const address =
   "7-26/3, Opp CS Brother, New Raghavendra Nagar, Nacharam, Hyderabad - 500076";
 
@@ -41,14 +41,14 @@ const contactCards = [
   {
     title: "WhatsApp",
     value: phone,
-    href: "https://wa.me/919640639926",
+    href: "https://wa.me/916309376811",
     icon: MessageCircle,
     tone: "text-green-500 hover:border-green-500",
   },
   {
     title: "Call Direct",
     value: "10 AM - 9 PM",
-    href: "tel:+919640639926",
+    href: "tel:+916309376811",
     icon: Phone,
     tone: "text-primary hover:border-primary",
   },
@@ -102,7 +102,7 @@ function ContactPage() {
 
             <div className="mt-10 flex flex-wrap gap-4">
               <a
-                href="https://wa.me/919640639926"
+                href="https://wa.me/916309376811"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-3 rounded-lg bg-fire px-7 py-4 text-sm font-black uppercase tracking-[0.22em] text-primary-foreground shadow-xl shadow-primary/25 transition hover:-translate-y-1"
@@ -112,7 +112,7 @@ function ContactPage() {
               </a>
 
               <a
-                href="tel:+919640639926"
+                href="tel:+916309376811"
                 className="inline-flex items-center gap-3 rounded-lg border border-border bg-card px-7 py-4 text-sm font-black uppercase tracking-[0.22em] transition hover:-translate-y-1 hover:border-primary hover:text-primary"
               >
                 Call Store
