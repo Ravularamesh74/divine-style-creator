@@ -132,13 +132,13 @@ export function Header() {
   </button>
 
   {/* User */}
-  <Link
-    to="/account"
+  <a
+    href="/account"
     className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-card transition hover:border-primary hover:text-primary"
     aria-label="User Account"
   >
     <User className="h-5 w-5" />
-  </Link>
+  </a>
 
   {/* Cart */}
   <Link

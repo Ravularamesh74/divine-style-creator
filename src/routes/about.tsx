@@ -97,6 +97,7 @@ function AboutPage() {
           <div className="mt-10 flex flex-wrap gap-4">
             <Link
               to="/shop"
+              search={{ q: undefined }}
               className="inline-flex items-center gap-3 rounded-lg bg-fire px-7 py-4 text-sm font-black uppercase tracking-[0.22em] text-primary-foreground"
             >
               Shop Drops
@@ -226,6 +227,7 @@ function AboutPage() {
             <Link
               key={fabric}
               to="/shop"
+              search={{ q: undefined }}
               className="group border border-border bg-card p-6 transition hover:-translate-y-2 hover:border-primary"
             >
               <Shirt className="h-8 w-8 text-primary" />
