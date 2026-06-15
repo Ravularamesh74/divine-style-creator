@@ -23,7 +23,7 @@ import logo from "@/assets/logo.png";
 const quickLinks = [
   { label: "All Products", to: "/shop" },
   { label: "New Arrivals", to: "/shop" },
-  { label: "Sale", to: "/shop" },
+  { label: "Collections", to: "/collections" },
   { label: "About", to: "/about" },
 ];
 

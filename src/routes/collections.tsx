@@ -59,6 +59,8 @@ const collections = [
   },
 ];
 
+
+
 function CollectionsPage() {
   return (
     <main className="min-h-screen bg-background">

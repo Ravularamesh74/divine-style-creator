@@ -264,6 +264,8 @@ function AboutPage() {
         </div>
       </section>
 
+      
+
       <section className="border-t border-border bg-card">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[1fr_1fr]">
           <div>

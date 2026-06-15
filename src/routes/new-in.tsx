@@ -57,24 +57,7 @@ const categories = [
 function NewInPage() {
   return (
     <main className="min-h-screen bg-background">
-      {/* HERO */}
-      <section className="border-b border-border py-24">
-        <div className="mx-auto max-w-7xl px-6 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-5 py-2 text-xs font-black uppercase tracking-[0.3em] text-primary">
-            <Sparkles className="h-4 w-4" />
-            Latest Arrivals
-          </span>
 
-          <h1 className="mt-8 font-display text-6xl uppercase md:text-8xl">
-            NEW IN
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-3xl text-lg text-muted-foreground">
-            Explore the latest Style Daddy drops featuring oversized tees,
-            shirts, cargos, jeans, hoodies, and premium streetwear essentials.
-          </p>
-        </div>
-      </section>
 
       {/* CATEGORIES */}
       <section className="mx-auto max-w-7xl px-6 py-20">

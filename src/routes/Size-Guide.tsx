@@ -123,7 +123,9 @@ function SizeGuide() {
 
             <Link
               to="/shop"
+              search={{ q: "" }}
               className="inline-flex items-center gap-3 rounded-lg border border-border bg-card/80 px-7 py-4 text-sm font-black uppercase tracking-[0.22em] transition hover:-translate-y-1 hover:border-primary hover:text-primary"
+            
             >
               Shop Fits
               <ArrowRight className="h-4 w-4" />

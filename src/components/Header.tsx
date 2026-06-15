@@ -18,13 +18,13 @@ import logo from "@/assets/logo.png";
 import { SearchDialog } from "@/components/SearchDialog";
 import { useAuth } from "@/hooks/use-auth";
 import { useCart } from "@/hooks/use-cart";
+import { LocationModal } from "@/components/LocationModal";
 
 
 const nav = [
 
   { to: "/", label: "HOME" },
   { to: "/new-in", label: "NEW IN" },
-  { to: "/sale", label: "SALE" },
   { to: "/shop", label: "PRODUCTS" },
   { to: "/collections", label: "COLLECTIONS" },
   { to: "/about", label: "ABOUT" },
@@ -38,6 +38,10 @@ export function Header() {
   const { user, setOpenAuth, setAuthMode } = useAuth();
   const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [locationOpen, setLocationOpen] = useState(false);
+  const [deliveryLocation, setDeliveryLocation] = useState(
+    () => (typeof window !== "undefined" ? localStorage.getItem("deliveryLocation") || "" : "")
+  );
   const [scroll, setScroll] = useState(0);
 
   const pathname = useRouterState({
@@ -92,40 +96,54 @@ export function Header() {
         {/* left: hidden on small to reduce clutter */}
         <div className="hidden md:flex items-center gap-6 text-xs uppercase">
           <button>STYLE DADDY CLUB</button>
-
           <div>
-            Delivering To
-            <div className="underline">Add delivery location</div>
+            <p className="text-xs text-white/70">
+              Delivering To
+            </p>
+
+            <button
+              onClick={() => setLocationOpen(true)}
+              className="underline"
+            >
+              {deliveryLocation || "Add delivery location"}
+            </button>
           </div>
         </div>
 
         {/* mobile icon row */}
+        
         <div className="flex items-center gap-3 md:hidden">
-          <button
-            aria-label="Open menu"
-            onClick={() => setOpen((v) => !v)}
-            className="p-2"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+  <button
+    aria-label="Open menu"
+    onClick={() => setOpen((v) => !v)}
+    className="p-2"
+  >
+    {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+  </button>
 
-          <button
-            aria-label="Search"
-            onClick={() => setSearchOpen(true)}
-            className="p-2"
-          >
-            <Search className="h-5 w-5" />
-          </button>
+  <button
+    aria-label="Search"
+    onClick={() => setSearchOpen(true)}
+    className="p-2"
+  >
+    <Search className="h-5 w-5" />
+  </button>
 
-          <Link to={user ? "/cart" : "/"} className="relative p-2">
-            <ShoppingCart className="h-5 w-5" />
-            {cartCount > 0 && (
-              <span className="absolute -right-1 -top-1 rounded-full bg-fire px-1 text-[10px] text-white">
-                {cartCount}
-              </span>
-            )}
-          </Link>
-        </div>
+  <img
+    src={logo}
+    alt="Style Daddy"
+    className="h-10 w-10 rounded-full"
+  />
+
+  <Link to={user ? "/cart" : "/"} className="relative p-2">
+    <ShoppingCart className="h-5 w-5" />
+    {cartCount > 0 && (
+      <span className="absolute -right-1 -top-1 rounded-full bg-fire px-1 text-[10px] text-white">
+        {cartCount}
+      </span>
+    )}
+  </Link>
+</div>
 
         {/* right: desktop links */}
         <div className="hidden md:flex items-center gap-6">
@@ -284,6 +302,14 @@ export function Header() {
       )}
 
       <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
+      <LocationModal
+        open={locationOpen}
+        onClose={() => setLocationOpen(false)}
+        onSave={(pin) => {
+          localStorage.setItem("deliveryLocation", pin);
+          setDeliveryLocation(pin);
+        }}
+      />
     </>
   );
 }
