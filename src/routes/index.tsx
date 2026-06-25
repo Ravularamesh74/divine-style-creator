@@ -23,6 +23,9 @@ import {
 import { ProductCard } from "@/components/ProductCard";
 import { products } from "@/lib/products";
 import hero from "@/assets/hero.jpg";
+import BOX_IMG_1 from "@/assets/Men's T-shirt, Japanese Regional Style _Tokyo Frog Warrior_ Creative Printed T-shirt Daily T-shirt.jpg";
+import BOX_IMG_2 from "@/assets/ghost.jpg";
+import BOX_IMG_3 from "@/assets/FRACTYR.jpg";
 import BLUE_OVERSIZE_TS from "@/assets/BLUE-OVERSIZE-T-SHIRT.jpeg";
 import WIDE_LEG_BP from "@/assets/PT-WIDE-LEG-BP.jpeg";
 import BLACK_OS_TS from "@/assets/BLACK-OS-TS.jpeg";
@@ -63,16 +66,19 @@ const tags = [
 const features = [
   {
     icon: Zap,
+    image: BOX_IMG_1,
     t: "Fast Street Drops",
     d: "Fresh colors, graphics, cargos, and hoodie rotations built around what men actually wear every week.",
   },
   {
     icon: BadgePercent,
+    image: BOX_IMG_2,
     t: "Premium Look, Real Price",
     d: "Clean silhouettes, strong fabric feel, and loud styling without turning every outfit into a luxury bill.",
   },
   {
     icon: ShieldCheck,
+    image: BOX_IMG_3,
     t: "Nacharam Trust",
     d: "Local store energy, easy contact, clear order support, and fits you can ask about before buying.",
   },
@@ -399,22 +405,19 @@ function Home() {
 
       <section className="mx-auto grid max-w-7xl gap-6 px-6 py-24 lg:grid-cols-4">
         {outfitCodes.map((outfit, index) => (
-          <article key={outfit.name} className="border border-border bg-card p-7">
-            <div className="overflow-hidden rounded-3xl border border-border bg-background">
+          <article key={outfit.name} className="group overflow-hidden rounded-3xl border border-border bg-card transition hover:-translate-y-1 hover:border-primary hover:shadow-2xl hover:shadow-primary/10">
+            <div className="overflow-hidden bg-background">
               <img
                 src={outfit.image}
                 alt={outfit.name}
-                className="h-52 w-full object-cover transition duration-500 hover:scale-105"
+                className="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
               />
             </div>
-            <div className="font-display text-5xl text-gradient-fire mt-6">
-              0{index + 1}
+            <div className="border-t border-border bg-card p-6">
+              <div className="font-display text-5xl text-gradient-fire">0{index + 1}</div>
+              <h3 className="mt-3 font-display text-3xl">{outfit.name}</h3>
+              <p className="mt-4 leading-7 text-muted-foreground">{outfit.mood}</p>
             </div>
-            <h3 className="mt-5 font-display text-3xl">{outfit.name}</h3>
-            <p className="mt-4 font-black uppercase leading-7 tracking-[0.12em]">
-              {outfit.fit}
-            </p>
-            <p className="mt-4 leading-7 text-muted-foreground">{outfit.mood}</p>
           </article>
         ))}
       </section>
@@ -486,36 +489,25 @@ function Home() {
           {features.map((f) => (
             <div
               key={f.t}
-              className="group border border-border bg-card p-8 transition hover:-translate-y-2 hover:border-primary hover:shadow-2xl hover:shadow-primary/10"
+              className="group relative overflow-hidden border border-border bg-card transition hover:-translate-y-2 hover:border-primary hover:shadow-2xl hover:shadow-primary/10"
             >
-              <f.icon className="h-10 w-10 text-primary" />
-              <h3 className="mt-5 font-display text-3xl tracking-wide">{f.t}</h3>
-              <p className="mt-3 leading-7 text-muted-foreground">{f.d}</p>
+              <img
+                src={f.image}
+                alt={f.t}
+                className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/50 to-transparent" />
+              <div className="relative flex min-h-[22rem] flex-col justify-end p-8">
+                <div className="inline-flex items-center gap-3 rounded-full border border-border bg-background/80 px-4 py-2 text-sm font-black uppercase tracking-[0.22em] text-primary backdrop-blur">
+                  <f.icon className="h-5 w-5" />
+                  {f.t}
+                </div>
+                <p className="mt-5 max-w-md text-base leading-7 text-muted-foreground">
+                  {f.d}
+                </p>
+              </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      <section className="relative isolate overflow-hidden border-t border-border px-6 py-28">
-        <div className="absolute inset-0 -z-10 grid-pattern opacity-35" />
-        <div className="mx-auto max-w-5xl text-center">
-          <Crown className="mx-auto h-12 w-12 text-primary" />
-          <h2 className="mt-6 font-display text-6xl uppercase leading-none md:text-8xl">
-            Ready To
-            <span className="block text-gradient-fire">Own The Fit?</span>
-          </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
-            Start with one oversized tee, one cargo, one hoodie, and one clean
-            sneaker pairing. Build the rotation. Repeat the damage.
-          </p>
-          <Link
-            to="/shop"
-            search={{ q: undefined }}
-            className="mt-10 inline-flex items-center gap-3 rounded-lg bg-fire px-8 py-4 text-sm font-black uppercase tracking-[0.24em] text-primary-foreground shadow-xl shadow-primary/25 transition hover:-translate-y-1"
-          >
-            Explore The Drop
-            <ArrowRight className="h-4 w-4" />
-          </Link>
         </div>
       </section>
     </main>

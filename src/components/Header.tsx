@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   Search,
@@ -44,6 +44,7 @@ export function Header() {
   );
   const [scroll, setScroll] = useState(0);
 
+  const navigate = useNavigate();
   const pathname = useRouterState({
     select: (s) => s.location.pathname,
   });
@@ -151,7 +152,12 @@ export function Header() {
 
           <button
             onClick={() => {
-              setAuthMode(user ? "account" : "login");
+              if (user) {
+                navigate({ to: "/profile" });
+                return;
+              }
+
+              setAuthMode("login");
               setOpenAuth(true);
             }}
           >

@@ -12,11 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as TrackOrderRouteImport } from './routes/track-order'
 import { Route as TermsAndConditionsRouteImport } from './routes/terms-and-conditions'
+import { Route as StoreRouteImport } from './routes/store'
 import { Route as SizeGuideRouteImport } from './routes/size-guide'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ShippingDeliveryRouteImport } from './routes/shipping-delivery'
 import { Route as ReturnPolicyRouteImport } from './routes/return-policy'
 import { Route as RefundPolicyRouteImport } from './routes/refund-policy'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as PaymentPolicyRouteImport } from './routes/payment-policy'
 import { Route as NewInRouteImport } from './routes/new-in'
@@ -29,11 +31,6 @@ import { Route as BulkOrderRouteImport } from './routes/bulk-order'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductIdRouteImport } from './routes/product.$id'
-import { Route as NewInTrousersRouteImport } from './routes/new-in/Trousers'
-import { Route as NewInTShirtsRouteImport } from './routes/new-in/T-shirts'
-import { Route as NewInShirtsRouteImport } from './routes/new-in/Shirts'
-import { Route as NewInJeansRouteImport } from './routes/new-in/Jeans'
-import { Route as NewInAccessoriesRouteImport } from './routes/new-in/Accessories'
 
 const WishlistRoute = WishlistRouteImport.update({
   id: '/wishlist',
@@ -48,6 +45,11 @@ const TrackOrderRoute = TrackOrderRouteImport.update({
 const TermsAndConditionsRoute = TermsAndConditionsRouteImport.update({
   id: '/terms-and-conditions',
   path: '/terms-and-conditions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoreRoute = StoreRouteImport.update({
+  id: '/store',
+  path: '/store',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SizeGuideRoute = SizeGuideRouteImport.update({
@@ -73,6 +75,11 @@ const ReturnPolicyRoute = ReturnPolicyRouteImport.update({
 const RefundPolicyRoute = RefundPolicyRouteImport.update({
   id: '/refund-policy',
   path: '/refund-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
@@ -135,31 +142,6 @@ const ProductIdRoute = ProductIdRouteImport.update({
   path: '/product/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NewInTrousersRoute = NewInTrousersRouteImport.update({
-  id: '/Trousers',
-  path: '/Trousers',
-  getParentRoute: () => NewInRoute,
-} as any)
-const NewInTShirtsRoute = NewInTShirtsRouteImport.update({
-  id: '/T-shirts',
-  path: '/T-shirts',
-  getParentRoute: () => NewInRoute,
-} as any)
-const NewInShirtsRoute = NewInShirtsRouteImport.update({
-  id: '/Shirts',
-  path: '/Shirts',
-  getParentRoute: () => NewInRoute,
-} as any)
-const NewInJeansRoute = NewInJeansRouteImport.update({
-  id: '/Jeans',
-  path: '/Jeans',
-  getParentRoute: () => NewInRoute,
-} as any)
-const NewInAccessoriesRoute = NewInAccessoriesRouteImport.update({
-  id: '/Accessories',
-  path: '/Accessories',
-  getParentRoute: () => NewInRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -170,22 +152,19 @@ export interface FileRoutesByFullPath {
   '/collections': typeof CollectionsRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
-  '/new-in': typeof NewInRouteWithChildren
+  '/new-in': typeof NewInRoute
   '/payment-policy': typeof PaymentPolicyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/profile': typeof ProfileRoute
   '/refund-policy': typeof RefundPolicyRoute
   '/return-policy': typeof ReturnPolicyRoute
   '/shipping-delivery': typeof ShippingDeliveryRoute
   '/shop': typeof ShopRoute
   '/size-guide': typeof SizeGuideRoute
+  '/store': typeof StoreRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/track-order': typeof TrackOrderRoute
   '/wishlist': typeof WishlistRoute
-  '/new-in/Accessories': typeof NewInAccessoriesRoute
-  '/new-in/Jeans': typeof NewInJeansRoute
-  '/new-in/Shirts': typeof NewInShirtsRoute
-  '/new-in/T-shirts': typeof NewInTShirtsRoute
-  '/new-in/Trousers': typeof NewInTrousersRoute
   '/product/$id': typeof ProductIdRoute
 }
 export interface FileRoutesByTo {
@@ -197,22 +176,19 @@ export interface FileRoutesByTo {
   '/collections': typeof CollectionsRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
-  '/new-in': typeof NewInRouteWithChildren
+  '/new-in': typeof NewInRoute
   '/payment-policy': typeof PaymentPolicyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/profile': typeof ProfileRoute
   '/refund-policy': typeof RefundPolicyRoute
   '/return-policy': typeof ReturnPolicyRoute
   '/shipping-delivery': typeof ShippingDeliveryRoute
   '/shop': typeof ShopRoute
   '/size-guide': typeof SizeGuideRoute
+  '/store': typeof StoreRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/track-order': typeof TrackOrderRoute
   '/wishlist': typeof WishlistRoute
-  '/new-in/Accessories': typeof NewInAccessoriesRoute
-  '/new-in/Jeans': typeof NewInJeansRoute
-  '/new-in/Shirts': typeof NewInShirtsRoute
-  '/new-in/T-shirts': typeof NewInTShirtsRoute
-  '/new-in/Trousers': typeof NewInTrousersRoute
   '/product/$id': typeof ProductIdRoute
 }
 export interface FileRoutesById {
@@ -225,22 +201,19 @@ export interface FileRoutesById {
   '/collections': typeof CollectionsRoute
   '/contact': typeof ContactRoute
   '/faqs': typeof FaqsRoute
-  '/new-in': typeof NewInRouteWithChildren
+  '/new-in': typeof NewInRoute
   '/payment-policy': typeof PaymentPolicyRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
+  '/profile': typeof ProfileRoute
   '/refund-policy': typeof RefundPolicyRoute
   '/return-policy': typeof ReturnPolicyRoute
   '/shipping-delivery': typeof ShippingDeliveryRoute
   '/shop': typeof ShopRoute
   '/size-guide': typeof SizeGuideRoute
+  '/store': typeof StoreRoute
   '/terms-and-conditions': typeof TermsAndConditionsRoute
   '/track-order': typeof TrackOrderRoute
   '/wishlist': typeof WishlistRoute
-  '/new-in/Accessories': typeof NewInAccessoriesRoute
-  '/new-in/Jeans': typeof NewInJeansRoute
-  '/new-in/Shirts': typeof NewInShirtsRoute
-  '/new-in/T-shirts': typeof NewInTShirtsRoute
-  '/new-in/Trousers': typeof NewInTrousersRoute
   '/product/$id': typeof ProductIdRoute
 }
 export interface FileRouteTypes {
@@ -257,19 +230,16 @@ export interface FileRouteTypes {
     | '/new-in'
     | '/payment-policy'
     | '/privacy-policy'
+    | '/profile'
     | '/refund-policy'
     | '/return-policy'
     | '/shipping-delivery'
     | '/shop'
     | '/size-guide'
+    | '/store'
     | '/terms-and-conditions'
     | '/track-order'
     | '/wishlist'
-    | '/new-in/Accessories'
-    | '/new-in/Jeans'
-    | '/new-in/Shirts'
-    | '/new-in/T-shirts'
-    | '/new-in/Trousers'
     | '/product/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -284,19 +254,16 @@ export interface FileRouteTypes {
     | '/new-in'
     | '/payment-policy'
     | '/privacy-policy'
+    | '/profile'
     | '/refund-policy'
     | '/return-policy'
     | '/shipping-delivery'
     | '/shop'
     | '/size-guide'
+    | '/store'
     | '/terms-and-conditions'
     | '/track-order'
     | '/wishlist'
-    | '/new-in/Accessories'
-    | '/new-in/Jeans'
-    | '/new-in/Shirts'
-    | '/new-in/T-shirts'
-    | '/new-in/Trousers'
     | '/product/$id'
   id:
     | '__root__'
@@ -311,19 +278,16 @@ export interface FileRouteTypes {
     | '/new-in'
     | '/payment-policy'
     | '/privacy-policy'
+    | '/profile'
     | '/refund-policy'
     | '/return-policy'
     | '/shipping-delivery'
     | '/shop'
     | '/size-guide'
+    | '/store'
     | '/terms-and-conditions'
     | '/track-order'
     | '/wishlist'
-    | '/new-in/Accessories'
-    | '/new-in/Jeans'
-    | '/new-in/Shirts'
-    | '/new-in/T-shirts'
-    | '/new-in/Trousers'
     | '/product/$id'
   fileRoutesById: FileRoutesById
 }
@@ -336,14 +300,16 @@ export interface RootRouteChildren {
   CollectionsRoute: typeof CollectionsRoute
   ContactRoute: typeof ContactRoute
   FaqsRoute: typeof FaqsRoute
-  NewInRoute: typeof NewInRouteWithChildren
+  NewInRoute: typeof NewInRoute
   PaymentPolicyRoute: typeof PaymentPolicyRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  ProfileRoute: typeof ProfileRoute
   RefundPolicyRoute: typeof RefundPolicyRoute
   ReturnPolicyRoute: typeof ReturnPolicyRoute
   ShippingDeliveryRoute: typeof ShippingDeliveryRoute
   ShopRoute: typeof ShopRoute
   SizeGuideRoute: typeof SizeGuideRoute
+  StoreRoute: typeof StoreRoute
   TermsAndConditionsRoute: typeof TermsAndConditionsRoute
   TrackOrderRoute: typeof TrackOrderRoute
   WishlistRoute: typeof WishlistRoute
@@ -371,6 +337,13 @@ declare module '@tanstack/react-router' {
       path: '/terms-and-conditions'
       fullPath: '/terms-and-conditions'
       preLoaderRoute: typeof TermsAndConditionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/store': {
+      id: '/store'
+      path: '/store'
+      fullPath: '/store'
+      preLoaderRoute: typeof StoreRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/size-guide': {
@@ -406,6 +379,13 @@ declare module '@tanstack/react-router' {
       path: '/refund-policy'
       fullPath: '/refund-policy'
       preLoaderRoute: typeof RefundPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy-policy': {
@@ -492,61 +472,8 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/new-in/Trousers': {
-      id: '/new-in/Trousers'
-      path: '/Trousers'
-      fullPath: '/new-in/Trousers'
-      preLoaderRoute: typeof NewInTrousersRouteImport
-      parentRoute: typeof NewInRoute
-    }
-    '/new-in/T-shirts': {
-      id: '/new-in/T-shirts'
-      path: '/T-shirts'
-      fullPath: '/new-in/T-shirts'
-      preLoaderRoute: typeof NewInTShirtsRouteImport
-      parentRoute: typeof NewInRoute
-    }
-    '/new-in/Shirts': {
-      id: '/new-in/Shirts'
-      path: '/Shirts'
-      fullPath: '/new-in/Shirts'
-      preLoaderRoute: typeof NewInShirtsRouteImport
-      parentRoute: typeof NewInRoute
-    }
-    '/new-in/Jeans': {
-      id: '/new-in/Jeans'
-      path: '/Jeans'
-      fullPath: '/new-in/Jeans'
-      preLoaderRoute: typeof NewInJeansRouteImport
-      parentRoute: typeof NewInRoute
-    }
-    '/new-in/Accessories': {
-      id: '/new-in/Accessories'
-      path: '/Accessories'
-      fullPath: '/new-in/Accessories'
-      preLoaderRoute: typeof NewInAccessoriesRouteImport
-      parentRoute: typeof NewInRoute
-    }
   }
 }
-
-interface NewInRouteChildren {
-  NewInAccessoriesRoute: typeof NewInAccessoriesRoute
-  NewInJeansRoute: typeof NewInJeansRoute
-  NewInShirtsRoute: typeof NewInShirtsRoute
-  NewInTShirtsRoute: typeof NewInTShirtsRoute
-  NewInTrousersRoute: typeof NewInTrousersRoute
-}
-
-const NewInRouteChildren: NewInRouteChildren = {
-  NewInAccessoriesRoute: NewInAccessoriesRoute,
-  NewInJeansRoute: NewInJeansRoute,
-  NewInShirtsRoute: NewInShirtsRoute,
-  NewInTShirtsRoute: NewInTShirtsRoute,
-  NewInTrousersRoute: NewInTrousersRoute,
-}
-
-const NewInRouteWithChildren = NewInRoute._addFileChildren(NewInRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -557,14 +484,16 @@ const rootRouteChildren: RootRouteChildren = {
   CollectionsRoute: CollectionsRoute,
   ContactRoute: ContactRoute,
   FaqsRoute: FaqsRoute,
-  NewInRoute: NewInRouteWithChildren,
+  NewInRoute: NewInRoute,
   PaymentPolicyRoute: PaymentPolicyRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
+  ProfileRoute: ProfileRoute,
   RefundPolicyRoute: RefundPolicyRoute,
   ReturnPolicyRoute: ReturnPolicyRoute,
   ShippingDeliveryRoute: ShippingDeliveryRoute,
   ShopRoute: ShopRoute,
   SizeGuideRoute: SizeGuideRoute,
+  StoreRoute: StoreRoute,
   TermsAndConditionsRoute: TermsAndConditionsRoute,
   TrackOrderRoute: TrackOrderRoute,
   WishlistRoute: WishlistRoute,

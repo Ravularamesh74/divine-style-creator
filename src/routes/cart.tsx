@@ -151,7 +151,7 @@ function CartPage() {
 
                     <button
                       type="button"
-                      onClick={() => removeItem(item.productId, item.size)}
+                      onClick={() => removeItem(`${item.productId}-${item.size}`)}
                       className="mt-4 inline-flex w-fit items-center gap-2 text-xs font-black uppercase tracking-[0.18em] text-muted-foreground hover:text-red-500"
                     >
                       <Trash2 className="h-4 w-4" />
@@ -165,8 +165,7 @@ function CartPage() {
                         type="button"
                         onClick={() =>
                           updateQuantity(
-                            item.productId,
-                            item.size,
+                            `${item.productId}-${item.size}`,
                             item.quantity - 1,
                           )
                         }
@@ -183,8 +182,7 @@ function CartPage() {
                         type="button"
                         onClick={() =>
                           updateQuantity(
-                            item.productId,
-                            item.size,
+                            `${item.productId}-${item.size}`,
                             item.quantity + 1,
                           )
                         }
