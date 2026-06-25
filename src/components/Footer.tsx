@@ -105,7 +105,7 @@ export function Footer() {
               </a>
 
               <a
-                href="chat.whatsapp.com/DHAaZ0SMxCr8k86yzqhBMy"
+                href="https://chat.whatsapp.com/DHAaZ0SMxCr8k86yzqhBMy"
                 target="_blank"
                 rel="noreferrer"
                 className="flex h-12 w-12 items-center justify-center border border-border bg-card transition hover:border-green-500 hover:text-green-500"
