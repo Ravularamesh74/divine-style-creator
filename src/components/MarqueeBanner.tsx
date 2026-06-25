@@ -1,95 +1,89 @@
-import {
-  BadgePercent,
-  Crown,
-  Flame,
-  MapPin,
-  MessageCircle,
-  Sparkles,
-  Truck,
-  Zap,
-} from "lucide-react";
+import { Truck, Flame, Sparkles, ShieldCheck, Gift, Star } from "lucide-react";
 
-const items = [
+const announcements = [
   {
-    icon: Crown,
-    text: "STYLE DADDY",
-    accent: "PREMIUM STREETWEAR",
-  },
-  {
-    icon: BadgePercent,
-    text: "FLAT 40% OFF",
-    accent: "LIMITED TIME",
-  },
-  {
-    icon: Sparkles,
-    text: "NEW DROPS",
-    accent: "EVERY WEEK",
+    icon: Flame,
+    text: "NEW DROP LIVE",
   },
   {
     icon: Truck,
-    text: "FAST DELIVERY",
-    accent: "ACROSS INDIA",
+    text: "FREE SHIPPING ₹1499+",
   },
   {
-    icon: MapPin,
-    text: "NACHARAM",
-    accent: "HYDERABAD",
+    icon: Gift,
+    text: "USE CODE STYLE10 FOR 10% OFF",
   },
   {
-    icon: MessageCircle,
-    text: "WHATSAPP ORDERS",
-    accent: "+91 63093 76811",
+    icon: ShieldCheck,
+    text: "100% SECURE PAYMENTS",
   },
   {
-    icon: Flame,
-    text: "BOLD FITS",
-    accent: "BRUTAL PRICES",
+    icon: Sparkles,
+    text: "PREMIUM MEN'S STREETWEAR",
   },
   {
-    icon: Zap,
-    text: "DM TO ORDER",
-    accent: "INSTANT SUPPORT",
+    icon: Star,
+    text: "EASY 7-DAY RETURNS",
   },
 ];
 
-function MarqueeTrack() {
-  return (
-    <div className="flex min-w-max shrink-0 animate-marquee items-center">
-      {items.map((item) => (
-        <div
-          key={`${item.text}-${item.accent}`}
-          className="group mx-7 flex items-center gap-3 text-sm font-black uppercase tracking-[0.24em] text-foreground/90 transition hover:text-primary"
-        >
-          <span className="flex h-8 w-8 items-center justify-center rounded-full border border-primary/30 bg-primary/10 text-primary transition group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
-            <item.icon className="h-4 w-4" />
-          </span>
-
-          <span>{item.text}</span>
-
-          <span className="text-primary">{item.accent}</span>
-
-          <span className="text-lg text-primary/60">✦</span>
-        </div>
-      ))}
-    </div>
-  );
-}
+const marqueeItems = [...announcements, ...announcements];
 
 export function MarqueeBanner() {
   return (
-    <section className="relative overflow-hidden border-b border-primary/20 bg-background">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
-      <div className="absolute left-1/4 top-1/2 h-32 w-32 -translate-y-1/2 rounded-full bg-primary/20 blur-3xl" />
-      <div className="absolute right-1/4 top-1/2 h-32 w-32 -translate-y-1/2 rounded-full bg-accent/20 blur-3xl" />
+    <section className="relative overflow-hidden border-b border-white/10 bg-black text-white">
+      {/* Left Fade */}
+      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-black to-transparent" />
 
-      <div className="group relative flex overflow-hidden whitespace-nowrap py-3">
-        <div className="flex group-hover:[animation-play-state:paused]">
-          <MarqueeTrack />
-          <MarqueeTrack />
+      {/* Right Fade */}
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-black to-transparent" />
+
+      {/* Glow */}
+      <div className="absolute left-1/2 top-1/2 h-24 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-red-500/10 blur-3xl" />
+
+      <div className="group flex overflow-hidden whitespace-nowrap">
+        <div className="flex min-w-max animate-[marquee_30s_linear_infinite] group-hover:[animation-play-state:paused]">
+          {marqueeItems.map((item, index) => {
+            const Icon = item.icon;
+
+            return (
+              <div
+                key={index}
+                className="flex h-11 items-center gap-3 px-8"
+              >
+                <Icon className="h-4 w-4 text-red-500" />
+
+                <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-white/90">
+                  {item.text}
+                </span>
+
+                <span className="text-red-500">•</span>
+              </div>
+            );
+          })}
         </div>
 
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent" />
+        {/* Duplicate for seamless loop */}
+        <div className="flex min-w-max animate-[marquee_30s_linear_infinite] group-hover:[animation-play-state:paused]">
+          {marqueeItems.map((item, index) => {
+            const Icon = item.icon;
+
+            return (
+              <div
+                key={`duplicate-${index}`}
+                className="flex h-11 items-center gap-3 px-8"
+              >
+                <Icon className="h-4 w-4 text-red-500" />
+
+                <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-white/90">
+                  {item.text}
+                </span>
+
+                <span className="text-red-500">•</span>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
