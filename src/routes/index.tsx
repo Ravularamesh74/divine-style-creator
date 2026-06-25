@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { ProductCard } from "@/components/ProductCard";
 import { products } from "@/lib/products";
-import hero from "@/assets/hero.jpg";
+import hero from "@/assets/hero.png";
 import FEATURE_IMG_1 from "@/assets/Men's T-shirt, Japanese Regional Style _Tokyo Frog Warrior_ Creative Printed T-shirt Daily T-shirt.jpg";
 import FEATURE_IMG_2 from "@/assets/ghost.jpg";
 import FEATURE_IMG_3 from "@/assets/FRACTYR.jpg";
