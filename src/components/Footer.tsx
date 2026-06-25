@@ -105,7 +105,7 @@ export function Footer() {
               </a>
 
               <a
-                href="https://l.instagram.com/?u=https%3A%2F%2Fchat.whatsapp.com%2FDHAaZ0SMxCr8k86yzqhBMy%3Futm_source%3Dig%26utm_medium%3Dsocial%26utm_content%3Dlink_in_bio%26fbclid%3DPAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGnBnheJe5oRIEsqODCPlC6tVZ66D0AmyVyg6ZhBsksETdhCOoTnU4xgTYjsN8_aem_u6uFz7jkhiZHsGspu4lYRQ&e=AUCDWVX_8K2a4enbFMCGl23MOFGECeKMlh2CqPvXX_XJMaq-b87nbYo_oMt8_EH1qPaOhL15kVOK0y917SPRtG1GNufNyjvw2tqKw0gho5rF8Nr0qpQjgc0LtdsIRDvhMHjDMWZNkBlISSalL3St3xU"
+                href="chat.whatsapp.com/DHAaZ0SMxCr8k86yzqhBMy"
                 target="_blank"
                 rel="noreferrer"
                 className="flex h-12 w-12 items-center justify-center border border-border bg-card transition hover:border-green-500 hover:text-green-500"
