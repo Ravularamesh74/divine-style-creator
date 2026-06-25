@@ -23,9 +23,12 @@ import {
 import { ProductCard } from "@/components/ProductCard";
 import { products } from "@/lib/products";
 import hero from "@/assets/hero.jpg";
-import BOX_IMG_1 from "@/assets/Men's T-shirt, Japanese Regional Style _Tokyo Frog Warrior_ Creative Printed T-shirt Daily T-shirt.jpg";
-import BOX_IMG_2 from "@/assets/ghost.jpg";
-import BOX_IMG_3 from "@/assets/FRACTYR.jpg";
+import FEATURE_IMG_1 from "@/assets/Men's T-shirt, Japanese Regional Style _Tokyo Frog Warrior_ Creative Printed T-shirt Daily T-shirt.jpg";
+import FEATURE_IMG_2 from "@/assets/ghost.jpg";
+import FEATURE_IMG_3 from "@/assets/FRACTYR.jpg";
+import BOX_IMG_1 from "@/assets/slim.jpg";
+import BOX_IMG_2 from "@/assets/street.jpg";
+import BOX_IMG_3 from "@/assets/heavy.jpg";
 import BLUE_OVERSIZE_TS from "@/assets/BLUE-OVERSIZE-T-SHIRT.jpeg";
 import WIDE_LEG_BP from "@/assets/PT-WIDE-LEG-BP.jpeg";
 import BLACK_OS_TS from "@/assets/BLACK-OS-TS.jpeg";
@@ -66,19 +69,19 @@ const tags = [
 const features = [
   {
     icon: Zap,
-    image: BOX_IMG_1,
+    image: FEATURE_IMG_1,
     t: "Fast Street Drops",
     d: "Fresh colors, graphics, cargos, and hoodie rotations built around what men actually wear every week.",
   },
   {
     icon: BadgePercent,
-    image: BOX_IMG_2,
+    image: FEATURE_IMG_2,
     t: "Premium Look, Real Price",
     d: "Clean silhouettes, strong fabric feel, and loud styling without turning every outfit into a luxury bill.",
   },
   {
     icon: ShieldCheck,
-    image: BOX_IMG_3,
+    image: FEATURE_IMG_3,
     t: "Nacharam Trust",
     d: "Local store energy, easy contact, clear order support, and fits you can ask about before buying.",
   },
@@ -147,9 +150,21 @@ const outfitCodes = [
 ];
 
 const fitGuide = [
-  { label: "Slim", detail: "Choose true size for a cleaner body line." },
-  { label: "Street", detail: "Go one size up for the Style Daddy oversized shape." },
-  { label: "Heavy", detail: "Pair wide bottoms with boxy tops for balanced volume." },
+  {
+    label: "Slim",
+    detail: "Perfect for fashion-forward individuals seeking a crisp and sophisticated aesthetic, the Slim Fit offers a close yet comfortable cut that flatters the physique. Its versatile design transitions seamlessly from casual outings to evening events, giving you a sharp, elevated look with every wear.",
+    image: BOX_IMG_1,
+  },
+  {
+    label: "Street",
+    detail: "Inspired by global street fashion and everyday hustle, this fit offers a relaxed profile with maximum comfort and standout style. Designed for creators, trendsetters, and anyone who lives beyond the ordinary.",
+    image: BOX_IMG_2,
+  },
+  {
+    label: "Heavy",
+    detail: "Built from premium 240–300 GSM heavyweight fabric, offering exceptional thickness, durability, and a refined feel. Perfect for those who want a luxury streetwear experience with enhanced structure, minimal shrinkage, and long-lasting performance.",
+    image: BOX_IMG_3,
+  },
 ];
 
 const fabricNotes = [
@@ -437,12 +452,18 @@ function Home() {
 
           <div className="grid gap-4 lg:col-span-2">
             {fitGuide.map((fit) => (
-              <div
-                key={fit.label}
-                className="grid gap-3 border border-border bg-background p-5 md:grid-cols-[10rem_1fr]"
-              >
-                <div className="font-display text-3xl text-primary">{fit.label}</div>
-                <p className="leading-7 text-muted-foreground">{fit.detail}</p>
+              <div key={fit.label} className="grid gap-3 overflow-hidden rounded-3xl border border-border bg-background md:grid-cols-[14rem_1fr]">
+                <div className="relative h-52 overflow-hidden md:h-auto">
+                  <img
+                    src={fit.image}
+                    alt={fit.label}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex flex-col justify-center p-5">
+                  <div className="font-display text-3xl text-primary">{fit.label}</div>
+                  <p className="mt-3 leading-7 text-muted-foreground">{fit.detail}</p>
+                </div>
               </div>
             ))}
           </div>
